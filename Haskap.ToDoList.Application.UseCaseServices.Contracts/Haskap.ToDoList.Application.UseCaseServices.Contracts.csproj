@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Haskap.ToDoList.Application.UseCaseServices.Dtos\Haskap.ToDoList.Application.UseCaseServices.Dtos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Haskap.DddBase.Application.UseCaseServices.Contracts">
+      <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Application.UseCaseServices.Contracts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

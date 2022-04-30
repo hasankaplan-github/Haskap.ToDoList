@@ -1,0 +1,120 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Presentation.WebApi", "Haskap.ToDoList.Presentation.WebApi\Haskap.ToDoList.Presentation.WebApi.csproj", "{C832A6AD-92B0-487D-84C4-2D3588AB7B3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{5BAE737E-4EF3-4153-BFAA-14F47FD377BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{FEB9EEA6-2778-4C42-BDDD-D32CB38141C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{617B1792-43B4-47DF-94E5-D9D2843F96F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{24E50918-9AB6-402D-88F8-FC37C63ACECA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ui", "Ui", "{2E1B9609-EF3D-4DF5-B049-21F26C79516F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{BF69EEA6-34FC-4905-9B9B-A14D9C73BABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.Core", "Haskap.ToDoList.Domain.Core\Haskap.ToDoList.Domain.Core.csproj", "{8024C780-5724-4BF4-813D-78A4BA553F9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.Services", "Haskap.ToDoList.Domain.Services\Haskap.ToDoList.Domain.Services.csproj", "{434E4552-308F-43E0-89D1-0FC59041925C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.Providers", "Haskap.ToDoList.Domain.Providers\Haskap.ToDoList.Domain.Providers.csproj", "{4459EA0A-8189-4F89-A1E7-7A896D7D5A6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.Core.Shared", "Haskap.ToDoList.Domain.Core.Shared\Haskap.ToDoList.Domain.Core.Shared.csproj", "{4425BA31-53F1-450A-8EE7-5955872F3025}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Application.UseCaseServices", "Haskap.ToDoList.Application.UseCaseServices\Haskap.ToDoList.Application.UseCaseServices.csproj", "{01A52042-81BF-48D4-B964-7668FC8AD690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Application.UseCaseServices.Contracts", "Haskap.ToDoList.Application.UseCaseServices.Contracts\Haskap.ToDoList.Application.UseCaseServices.Contracts.csproj", "{D4127067-CEA5-43EC-A8E6-65684567E044}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Application.UseCaseServices.Dtos", "Haskap.ToDoList.Application.UseCaseServices.Dtos\Haskap.ToDoList.Application.UseCaseServices.Dtos.csproj", "{425EEE40-1A1A-473A-B8F5-4ED255DAAC21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Application.EventHandlers", "Haskap.ToDoList.Application.EventHandlers\Haskap.ToDoList.Application.EventHandlers.csproj", "{88A19145-3422-4AF5-AFD5-2A317C574E06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.EventHandlers", "Haskap.ToDoList.Domain.EventHandlers\Haskap.ToDoList.Domain.EventHandlers.csproj", "{2AC30C91-68DA-46BE-8F2E-B8BD784DB424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext", "Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext\Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.csproj", "{57CDB5C6-DD91-4309-961F-03D39A6BA253}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Ui.MvcWebUi", "Haskap.ToDoList.Ui.MvcWebUi\Haskap.ToDoList.Ui.MvcWebUi.csproj", "{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6710F2CF-9D40-4B39-A178-6D4120B5A96D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C832A6AD-92B0-487D-84C4-2D3588AB7B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C832A6AD-92B0-487D-84C4-2D3588AB7B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C832A6AD-92B0-487D-84C4-2D3588AB7B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C832A6AD-92B0-487D-84C4-2D3588AB7B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8024C780-5724-4BF4-813D-78A4BA553F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8024C780-5724-4BF4-813D-78A4BA553F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8024C780-5724-4BF4-813D-78A4BA553F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8024C780-5724-4BF4-813D-78A4BA553F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{434E4552-308F-43E0-89D1-0FC59041925C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{434E4552-308F-43E0-89D1-0FC59041925C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{434E4552-308F-43E0-89D1-0FC59041925C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{434E4552-308F-43E0-89D1-0FC59041925C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4459EA0A-8189-4F89-A1E7-7A896D7D5A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4459EA0A-8189-4F89-A1E7-7A896D7D5A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4459EA0A-8189-4F89-A1E7-7A896D7D5A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4459EA0A-8189-4F89-A1E7-7A896D7D5A6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4425BA31-53F1-450A-8EE7-5955872F3025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4425BA31-53F1-450A-8EE7-5955872F3025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4425BA31-53F1-450A-8EE7-5955872F3025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4425BA31-53F1-450A-8EE7-5955872F3025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01A52042-81BF-48D4-B964-7668FC8AD690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A52042-81BF-48D4-B964-7668FC8AD690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A52042-81BF-48D4-B964-7668FC8AD690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A52042-81BF-48D4-B964-7668FC8AD690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4127067-CEA5-43EC-A8E6-65684567E044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4127067-CEA5-43EC-A8E6-65684567E044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4127067-CEA5-43EC-A8E6-65684567E044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4127067-CEA5-43EC-A8E6-65684567E044}.Release|Any CPU.Build.0 = Release|Any CPU
+		{425EEE40-1A1A-473A-B8F5-4ED255DAAC21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{425EEE40-1A1A-473A-B8F5-4ED255DAAC21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{425EEE40-1A1A-473A-B8F5-4ED255DAAC21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{425EEE40-1A1A-473A-B8F5-4ED255DAAC21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A19145-3422-4AF5-AFD5-2A317C574E06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A19145-3422-4AF5-AFD5-2A317C574E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A19145-3422-4AF5-AFD5-2A317C574E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A19145-3422-4AF5-AFD5-2A317C574E06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC30C91-68DA-46BE-8F2E-B8BD784DB424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC30C91-68DA-46BE-8F2E-B8BD784DB424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC30C91-68DA-46BE-8F2E-B8BD784DB424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC30C91-68DA-46BE-8F2E-B8BD784DB424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57CDB5C6-DD91-4309-961F-03D39A6BA253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57CDB5C6-DD91-4309-961F-03D39A6BA253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57CDB5C6-DD91-4309-961F-03D39A6BA253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57CDB5C6-DD91-4309-961F-03D39A6BA253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C832A6AD-92B0-487D-84C4-2D3588AB7B3D} = {24E50918-9AB6-402D-88F8-FC37C63ACECA}
+		{8024C780-5724-4BF4-813D-78A4BA553F9F} = {5BAE737E-4EF3-4153-BFAA-14F47FD377BB}
+		{434E4552-308F-43E0-89D1-0FC59041925C} = {5BAE737E-4EF3-4153-BFAA-14F47FD377BB}
+		{4459EA0A-8189-4F89-A1E7-7A896D7D5A6A} = {5BAE737E-4EF3-4153-BFAA-14F47FD377BB}
+		{4425BA31-53F1-450A-8EE7-5955872F3025} = {5BAE737E-4EF3-4153-BFAA-14F47FD377BB}
+		{01A52042-81BF-48D4-B964-7668FC8AD690} = {FEB9EEA6-2778-4C42-BDDD-D32CB38141C8}
+		{D4127067-CEA5-43EC-A8E6-65684567E044} = {FEB9EEA6-2778-4C42-BDDD-D32CB38141C8}
+		{425EEE40-1A1A-473A-B8F5-4ED255DAAC21} = {FEB9EEA6-2778-4C42-BDDD-D32CB38141C8}
+		{88A19145-3422-4AF5-AFD5-2A317C574E06} = {FEB9EEA6-2778-4C42-BDDD-D32CB38141C8}
+		{2AC30C91-68DA-46BE-8F2E-B8BD784DB424} = {5BAE737E-4EF3-4153-BFAA-14F47FD377BB}
+		{57CDB5C6-DD91-4309-961F-03D39A6BA253} = {6710F2CF-9D40-4B39-A178-6D4120B5A96D}
+		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3} = {2E1B9609-EF3D-4DF5-B049-21F26C79516F}
+		{6710F2CF-9D40-4B39-A178-6D4120B5A96D} = {617B1792-43B4-47DF-94E5-D9D2843F96F2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAF62B9D-AF32-48A8-84AC-2E416A33BFFF}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Haskap.ToDoList.Application.UseCaseServices.Contracts\Haskap.ToDoList.Application.UseCaseServices.Contracts.csproj" />
+    <ProjectReference Include="..\Haskap.ToDoList.Application.UseCaseServices.Dtos\Haskap.ToDoList.Application.UseCaseServices.Dtos.csproj" />
+    <ProjectReference Include="..\Haskap.ToDoList.Domain.Core.Shared\Haskap.ToDoList.Domain.Core.Shared.csproj" />
+    <ProjectReference Include="..\Haskap.ToDoList.Domain.Core\Haskap.ToDoList.Domain.Core.csproj" />
+    <ProjectReference Include="..\Haskap.ToDoList.Domain.Providers\Haskap.ToDoList.Domain.Providers.csproj" />
+    <ProjectReference Include="..\Haskap.ToDoList.Domain.Services\Haskap.ToDoList.Domain.Services.csproj" />
+    <ProjectReference Include="..\Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext\Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Haskap.DddBase.Domain.Core">
+      <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Domain.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Haskap.DddBase.Utilities">
+      <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
