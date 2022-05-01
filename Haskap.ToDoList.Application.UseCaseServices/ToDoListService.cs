@@ -28,70 +28,10 @@ public class ToDoListService : UseCaseService, IToDoListService
         _ownerUserId=jwtClaimsProvider.LoggedInUserId;
     }
 
-    public async Task AddToDoItem(Guid toDoListId, ToDoItemInputDto toDoItemInputDto)
+    public async Task AddToDoList(ToDoListInputDto toDoListInputDto)
     {
-        var toDoList = await _appDbContext.ToDoList.FindAsync(toDoListId);
-        if (toDoList.OwnerUserId != _ownerUserId)
-        {
-            throw new Exception("You are not the owner of this list");
-        }
-
-        var toDoItem = new ToDoItem(
-            GuidGenerator.CreateSimpleGuid(), 
-            toDoItemInputDto.Content, 
-            toDoItemInputDto.DueDate,
-            toDoItemInputDto.IsCompleted
-            );
-
-        toDoList.AddToDoItem(toDoItem);
-        await _appDbContext.SaveChangesAsync();
-    }
-
-    public async Task UpdateToDoItem(Guid toDoListId, Guid toDoItemId, ToDoItemInputDto toDoItemInputDto)
-    {
-        var toDoList = await _appDbContext.ToDoList.FindAsync(toDoListId);
-        if (toDoList.OwnerUserId != _ownerUserId)
-        {
-            throw new Exception("You are not the owner of this list");
-        }
-
-        var toDoItem = toDoList.ToDoItems.Single(x => x.Id == toDoItemId);
-        toDoItem.SetContent(toDoItemInputDto.Content);
-        toDoItem.DueDate = toDoItemInputDto.DueDate;
-        if (toDoItemInputDto.IsCompleted && toDoItem.IsCompleted == false)
-        {
-            toDoItem.MarkAsCompleted();
-        }
-        else if (!toDoItemInputDto.IsCompleted && toDoItem.IsCompleted == true)
-        {
-            toDoItem.MarkAsNotCompleted();
-        }
-
-        await _appDbContext.SaveChangesAsync();
-    }
-
-    public async Task AddToDoList(string name)
-    {
-        var toDoList = new Domain.Core.ToDoListAggregate.ToDoList(_ownerUserId, name);
+        var toDoList = new Domain.Core.ToDoListAggregate.ToDoList(_ownerUserId, toDoListInputDto.Name);
         await _appDbContext.ToDoList.AddAsync(toDoList);
-        await _appDbContext.SaveChangesAsync();
-    }
-
-    public async Task DeleteToDoItem(Guid toDoListId, Guid toDoItemId)
-    {
-        var toDoList = await _appDbContext.ToDoList
-            .Where(x => x.Id == toDoListId)
-            .Include(x => x.ToDoItems.Where(y => y.Id == toDoItemId))
-            .SingleAsync();
-        
-        if (toDoList!.OwnerUserId != _ownerUserId)
-        {
-            throw new Exception("You are not the owner of this list");
-        }
-
-        var toBeRemoved = toDoList.ToDoItems.Single(x => x.Id == toDoItemId);
-        toDoList.RemoveToDoItem(toBeRemoved);
-        
         await _appDbContext.SaveChangesAsync();
     }
 
@@ -107,7 +47,7 @@ public class ToDoListService : UseCaseService, IToDoListService
         await _appDbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateToDoList(Guid toDoListId, string name)
+    public async Task UpdateToDoList(Guid toDoListId, ToDoListInputDto toDoListInputDto)
     {
         var toDoList = await _appDbContext.ToDoList.FindAsync(toDoListId);
         if (toDoList.OwnerUserId != _ownerUserId)
@@ -115,14 +55,14 @@ public class ToDoListService : UseCaseService, IToDoListService
             throw new Exception("You are not the owner of this list");
         }
 
-        toDoList.SetName(name);
+        toDoList.SetName(toDoListInputDto.Name);
         await _appDbContext.SaveChangesAsync();
     }
 
-    public async Task MarkToDoListAsCompleted(Guid toDoListId)
+    public async Task MarkToDoListAsCompleted(MarkAsCompleted_ToDoListInputDto toDoListInputDto)
     {
         var toDoList = await _appDbContext.ToDoList
-            .Where(x => x.Id == toDoListId)
+            .Where(x => x.Id == toDoListInputDto.ToDoListId)
             .Include(x => x.ToDoItems)
             .SingleAsync();
         if (toDoList!.OwnerUserId != _ownerUserId)
@@ -138,65 +78,16 @@ public class ToDoListService : UseCaseService, IToDoListService
         await _appDbContext.SaveChangesAsync();
     }
 
-    public async Task MarkToDoItemAsCompleted(Guid toDoListId, Guid toDoItemId)
-    {
-        var toDoList = await _appDbContext.ToDoList
-            .Where(x => x.Id == toDoListId)
-            .Include(x => x.ToDoItems.Where(y => y.Id == toDoItemId))
-            .SingleAsync();
-        if (toDoList!.OwnerUserId != _ownerUserId)
-        {
-            throw new Exception("You are not the owner of this list");
-        }
-
-        var toDoItem = toDoList.ToDoItems.Single(x => x.Id == toDoItemId);
-        toDoItem.MarkAsCompleted();
-
-        await _appDbContext.SaveChangesAsync();
-    }
-
-    public async Task MarkToDoItemAsNotCompleted(Guid toDoListId, Guid toDoItemId)
-    {
-        var toDoList = await _appDbContext.ToDoList
-            .Where(x => x.Id == toDoListId)
-            .Include(x => x.ToDoItems.Where(y => y.Id == toDoItemId))
-            .SingleAsync();
-        if (toDoList!.OwnerUserId != _ownerUserId)
-        {
-            throw new Exception("You are not the owner of this list");
-        }
-
-        var toDoItem = toDoList.ToDoItems.Single(x => x.Id == toDoItemId);
-        toDoItem.MarkAsNotCompleted();
-
-        await _appDbContext.SaveChangesAsync();
-    }
-
-    public async Task<IEnumerable<GetToDoLists_ToDoListOutputDto>> GetToDoLists()
+    public async Task<IEnumerable<ToDoListOutputDto>> GetToDoLists()
     {
         var toDoLists = await _appDbContext.ToDoList
             .Where(x => x.OwnerUserId == _ownerUserId)
             .ToListAsync();
 
-        var outputDto = _mapper.Map<IEnumerable<GetToDoLists_ToDoListOutputDto>>(toDoLists);
+        var outputDto = _mapper.Map<IEnumerable<ToDoListOutputDto>>(toDoLists);
 
         return outputDto;
     }
 
-    public async Task<IEnumerable<GetToDoItems_ToDoItemOutputDto>> GetToDoItems(Guid toDoListId)
-    {
-        var toDoList = await _appDbContext.ToDoList
-            .Include(x => x.ToDoItems)
-            .Where(x => x.Id == toDoListId)
-            .SingleAsync();
-
-        if (toDoList!.OwnerUserId != _ownerUserId)
-        {
-            throw new Exception("You are not the owner of this list");
-        }
-
-        var outputDto = _mapper.Map<IEnumerable<GetToDoItems_ToDoItemOutputDto>>(toDoList.ToDoItems);
-
-        return outputDto;
-    }
+    
 }

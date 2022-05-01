@@ -19,23 +19,15 @@ public class ToDoListController : BaseController
     }
 
     [Authorize]
-    [HttpPost("AddToDoList")]
-    public async Task<IActionResult> AddToDoList([FromBody]string name)
+    [HttpPost]
+    public async Task<IActionResult> AddToDoList(ToDoListInputDto toDoListInputDto)
     {
-        await _toDoListService.AddToDoList(name);
+        await _toDoListService.AddToDoList(toDoListInputDto);
         return Ok();
     }
 
     [Authorize]
-    [HttpPost("AddToDoItem")]
-    public async Task<IActionResult> AddToDoItem(Guid toDoListId, ToDoItemInputDto toDoItemInputDto)
-    {
-        await _toDoListService.AddToDoItem(toDoListId, toDoItemInputDto);
-        return Ok();
-    }
-
-    [Authorize]
-    [HttpPost("DeleteToDoList")]
+    [HttpDelete("{toDoListId}")]
     public async Task<IActionResult> DeleteToDoList(Guid toDoListId)
     {
         await _toDoListService.DeleteToDoList(toDoListId);
@@ -43,31 +35,15 @@ public class ToDoListController : BaseController
     }
 
     [Authorize]
-    [HttpPost("UpdateToDoList")]
-    public async Task<IActionResult> UpdateToDoList(Guid toDoListId, string name)
+    [HttpPut("{toDoListId}")]
+    public async Task<IActionResult> UpdateToDoList(Guid toDoListId, ToDoListInputDto toDoListInputDto)
     {
-        await _toDoListService.UpdateToDoList(toDoListId, name);
+        await _toDoListService.UpdateToDoList(toDoListId, toDoListInputDto);
         return Ok();
     }
 
     [Authorize]
-    [HttpPost("DeleteToDoItem")]
-    public async Task<IActionResult> DeleteToDoItem(Guid toDoListId, Guid toDoItemId)
-    {
-        await _toDoListService.DeleteToDoItem(toDoListId, toDoItemId);
-        return Ok();
-    }
-
-    [Authorize]
-    [HttpPost("UpdateToDoItem")]
-    public async Task<IActionResult> UpdateToDoItem(Guid toDoListId, Guid toDoItemId, ToDoItemInputDto toDoItemInputDto)
-    {
-        await _toDoListService.UpdateToDoItem(toDoListId, toDoItemId, toDoItemInputDto);
-        return Ok();
-    }
-
-    [Authorize]
-    [HttpPost("GetToDoLists")]
+    [HttpGet("List")]
     public async Task<IActionResult> GetToDoLists()
     {
         var outputDto = await _toDoListService.GetToDoLists();
@@ -75,10 +51,12 @@ public class ToDoListController : BaseController
     }
 
     [Authorize]
-    [HttpPost("GetToDoItems")]
-    public async Task<IActionResult> GetToDoItems(Guid toDoListId)
+    [HttpPost("MarkAsCompleted")]
+    public async Task<IActionResult> MarkAsCompleted(MarkAsCompleted_ToDoListInputDto toDoListInputDto)
     {
-        var outputDto = await _toDoListService.GetToDoItems(toDoListId);
-        return Ok(outputDto);
+        await _toDoListService.MarkToDoListAsCompleted(toDoListInputDto);
+        return Ok();
     }
+
+
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Haskap.ToDoList.Application.UseCaseServices.Dtos;
 
-public class GetToDoItems_ToDoItemOutputDto
+public class ToDoItemOutputDto
 {
     public string Content { get; set; }
     public DateTime? DueDate { get; set; }
