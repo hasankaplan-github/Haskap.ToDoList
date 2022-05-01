@@ -31,7 +31,7 @@ builder.Services
         };
     });
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+var connectionString = builder.Configuration.GetConnectionString("ToDoListConnectionString");
 builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) => {
     options.UseNpgsql(connectionString);
     //options.AddInterceptors(serviceProvider.GetRequiredService<AuditSaveChangesInterceptor<Guid?>>());
