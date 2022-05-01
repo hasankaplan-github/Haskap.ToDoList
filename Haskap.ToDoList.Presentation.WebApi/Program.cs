@@ -8,6 +8,7 @@ using Haskap.ToDoList.Application.UseCaseServices.Dtos.Mappings;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Text.Json;
+using Haskap.ToDoList.Presentation.WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +38,7 @@ builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) => {
     //options.AddInterceptors(serviceProvider.GetRequiredService<AuditHistoryLogSaveChangesInterceptor<Guid?>>());
 });
 
-
+builder.Services.AddProviders();
 builder.Services.AddUseCaseServices();
 
 builder.Services.AddAutoMapper(typeof(ToDoListProfile).Assembly);
@@ -100,6 +101,16 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+/*
+app.Use(async (context, next) =>
+{
+    // Do work that can write to the Response.
+    await next.Invoke();
+    // Do logging or other work that doesn't write to the Response.
+});
+*/
+app.UseMiddleware<JwtClaimsMiddleware>();
 
 app.MapControllers();
 

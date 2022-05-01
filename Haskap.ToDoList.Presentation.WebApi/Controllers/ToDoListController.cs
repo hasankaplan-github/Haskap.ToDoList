@@ -12,19 +12,17 @@ namespace Haskap.ToDoList.Presentation.WebApi.Controllers;
 public class ToDoListController : BaseController
 {
     private readonly IToDoListService _toDoListService;
-    private readonly Guid _ownerUserId;
 
     public ToDoListController(IToDoListService toDoListService)
     {
         _toDoListService=toDoListService;
-        _ownerUserId = Guid.Parse(User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier)!.Value);        
     }
 
     [Authorize]
     [HttpPost("AddToDoList")]
     public async Task<IActionResult> AddToDoList([FromBody]string name)
     {
-        await _toDoListService.AddToDoList(_ownerUserId, name);
+        await _toDoListService.AddToDoList(name);
         return Ok();
     }
 
@@ -32,7 +30,7 @@ public class ToDoListController : BaseController
     [HttpPost("AddToDoItem")]
     public async Task<IActionResult> AddToDoItem(Guid toDoListId, ToDoItemInputDto toDoItemInputDto)
     {
-        await _toDoListService.AddToDoItem(_ownerUserId, toDoListId, toDoItemInputDto);
+        await _toDoListService.AddToDoItem(toDoListId, toDoItemInputDto);
         return Ok();
     }
 
@@ -40,7 +38,7 @@ public class ToDoListController : BaseController
     [HttpPost("DeleteToDoList")]
     public async Task<IActionResult> DeleteToDoList(Guid toDoListId)
     {
-        await _toDoListService.DeleteToDoList(_ownerUserId, toDoListId);
+        await _toDoListService.DeleteToDoList(toDoListId);
         return Ok();
     }
 
@@ -48,7 +46,7 @@ public class ToDoListController : BaseController
     [HttpPost("UpdateToDoList")]
     public async Task<IActionResult> UpdateToDoList(Guid toDoListId, string name)
     {
-        await _toDoListService.UpdateToDoList(_ownerUserId, toDoListId, name);
+        await _toDoListService.UpdateToDoList(toDoListId, name);
         return Ok();
     }
 
@@ -56,7 +54,7 @@ public class ToDoListController : BaseController
     [HttpPost("DeleteToDoItem")]
     public async Task<IActionResult> DeleteToDoItem(Guid toDoListId, Guid toDoItemId)
     {
-        await _toDoListService.DeleteToDoItem(_ownerUserId, toDoListId, toDoItemId);
+        await _toDoListService.DeleteToDoItem(toDoListId, toDoItemId);
         return Ok();
     }
 
@@ -64,7 +62,7 @@ public class ToDoListController : BaseController
     [HttpPost("UpdateToDoItem")]
     public async Task<IActionResult> UpdateToDoItem(Guid toDoListId, Guid toDoItemId, ToDoItemInputDto toDoItemInputDto)
     {
-        await _toDoListService.UpdateToDoItem(_ownerUserId, toDoListId, toDoItemId, toDoItemInputDto);
+        await _toDoListService.UpdateToDoItem(toDoListId, toDoItemId, toDoItemInputDto);
         return Ok();
     }
 
@@ -72,7 +70,7 @@ public class ToDoListController : BaseController
     [HttpPost("GetToDoLists")]
     public async Task<IActionResult> GetToDoLists()
     {
-        var outputDto = await _toDoListService.GetToDoLists(_ownerUserId);
+        var outputDto = await _toDoListService.GetToDoLists();
         return Ok(outputDto);
     }
 
@@ -80,7 +78,7 @@ public class ToDoListController : BaseController
     [HttpPost("GetToDoItems")]
     public async Task<IActionResult> GetToDoItems(Guid toDoListId)
     {
-        var outputDto = await _toDoListService.GetToDoItems(_ownerUserId, toDoListId);
+        var outputDto = await _toDoListService.GetToDoItems(toDoListId);
         return Ok(outputDto);
     }
 }

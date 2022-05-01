@@ -1,5 +1,6 @@
 ﻿using Haskap.ToDoList.Application.UseCaseServices;
 using Haskap.ToDoList.Application.UseCaseServices.Contracts;
+using Haskap.ToDoList.Domain.Providers;
 
 namespace Haskap.ToDoList.Presentation.WebApi;
 
@@ -22,7 +23,7 @@ public static class ServiceCollectionExtensions
 
     public static void AddProviders(this IServiceCollection services)
     {
-        //services.AddSingleton<LoggedInUserProvider<Guid?>>();
+        services.AddScoped<JwtClaimsProvider>();
         //services.AddSingleton<VisitIdProvider>();
         //services.AddSingleton<ApplicationIdProvider>();
     }
