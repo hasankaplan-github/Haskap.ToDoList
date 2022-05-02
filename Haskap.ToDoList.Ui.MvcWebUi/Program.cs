@@ -1,19 +1,14 @@
+using Haskap.ToDoList.Ui.MvcWebUi.Services;
 using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient("ToDoListApi", httpClient =>
-{
-    httpClient.BaseAddress = new Uri(builder.Configuration["ApiBaseAddress"]);
-
-    // using Microsoft.Net.Http.Headers;
-    // The GitHub API requires two headers.
-    httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
-    //httpClient.DefaultRequestHeaders.Add(HeaderNames.UserAgent, "HttpRequestsSample");
-});
-
+builder.Services.AddHttpClient<AccountService>();
+builder.Services.AddHttpClient<ToDoListService>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

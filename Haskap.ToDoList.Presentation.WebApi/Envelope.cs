@@ -14,6 +14,10 @@ public class Envelope<T>
     }
     public string? ExceptionType { get; set; }
 
+    public Envelope()
+    {
+    }
+
     protected internal Envelope(T? result, string? exceptionMessage, string? exceptionStackTrace, string? exceptionType)
     {
         Result = result;
