@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using Haskap.DddBase.Application.UseCaseServices;
+using Haskap.DddBase.Domain.Providers;
 using Haskap.DddBase.Utilities.Guids;
 using Haskap.ToDoList.Application.UseCaseServices.Contracts;
 using Haskap.ToDoList.Application.UseCaseServices.Dtos;
 using Haskap.ToDoList.Domain.Core.ToDoListAggregate;
-using Haskap.ToDoList.Domain.Providers;
+using Haskap.ToDoList.Domain.Core.UserAggregate;
 using Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,11 +22,11 @@ public class ToDoListService : UseCaseService, IToDoListService
     private readonly IMapper _mapper;
     private readonly Guid _ownerUserId;
 
-    public ToDoListService(AppDbContext appDbContext, IMapper mapper, JwtClaimsProvider jwtClaimsProvider)
+    public ToDoListService(AppDbContext appDbContext, IMapper mapper, CurrentUserProvider<User, Guid> currentUserProvider)
     {
         _appDbContext=appDbContext;
         _mapper=mapper;
-        _ownerUserId=jwtClaimsProvider.LoggedInUserId;
+        _ownerUserId=currentUserProvider.User.Id;
     }
 
     public async Task AddToDoList(ToDoListInputDto toDoListInputDto)

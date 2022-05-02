@@ -110,7 +110,7 @@ app.Use(async (context, next) =>
     // Do logging or other work that doesn't write to the Response.
 });
 */
-app.UseMiddleware<JwtClaimsMiddleware>();
+app.UseMiddleware<CurrentUserMiddleware>();
 
 app.MapControllers();
 

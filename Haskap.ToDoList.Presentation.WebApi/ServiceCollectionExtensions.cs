@@ -1,6 +1,7 @@
-﻿using Haskap.ToDoList.Application.UseCaseServices;
+﻿using Haskap.DddBase.Domain.Providers;
+using Haskap.ToDoList.Application.UseCaseServices;
 using Haskap.ToDoList.Application.UseCaseServices.Contracts;
-using Haskap.ToDoList.Domain.Providers;
+using Haskap.ToDoList.Domain.Core.UserAggregate;
 
 namespace Haskap.ToDoList.Presentation.WebApi;
 
@@ -23,7 +24,7 @@ public static class ServiceCollectionExtensions
 
     public static void AddProviders(this IServiceCollection services)
     {
-        services.AddScoped<JwtClaimsProvider>();
+        services.AddScoped<CurrentUserProvider<User, Guid>>();
         //services.AddSingleton<VisitIdProvider>();
         //services.AddSingleton<ApplicationIdProvider>();
     }

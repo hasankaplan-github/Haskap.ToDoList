@@ -32,13 +32,19 @@
 
   <ItemGroup>
     <Reference Include="Haskap.DddBase.Application.UseCaseServices">
-      <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Application.UseCaseServices.dll</HintPath>
+      <HintPath>..\References\Haskap.DddBase.Application.UseCaseServices.dll</HintPath>
     </Reference>
     <Reference Include="Haskap.DddBase.Application.UseCaseServices.Contracts">
-      <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Application.UseCaseServices.Contracts.dll</HintPath>
+      <HintPath>..\References\Haskap.DddBase.Application.UseCaseServices.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Haskap.DddBase.Domain.Core">
+      <HintPath>..\References\Haskap.DddBase.Domain.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Haskap.DddBase.Domain.Providers">
+      <HintPath>..\References\Haskap.DddBase.Domain.Providers.dll</HintPath>
     </Reference>
     <Reference Include="Haskap.DddBase.Infrastructure.Data.EfCoreDbContexts.NpgsqlDbContext">
-      <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Infrastructure.Data.EfCoreDbContexts.NpgsqlDbContext.dll</HintPath>
+      <HintPath>..\References\Haskap.DddBase.Infrastructure.Data.EfCoreDbContexts.NpgsqlDbContext.dll</HintPath>
     </Reference>
   </ItemGroup>
 

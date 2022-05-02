@@ -44,7 +44,9 @@ public class AccountService : UseCaseService, IAccountService
                         new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                         new Claim(JwtRegisteredClaimNames.Jti, GuidGenerator.CreateSimpleGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("DisplayName", user.Name.FirstName + " " + user.Name.LastName),
+                        new Claim("FirstName", user.Name.FirstName),
+                        new Claim("MiddleName", user.Name.MiddleName),
+                        new Claim("LastName", user.Name.LastName),
                         new Claim("UserName", user.UserName.Value),
                     };
 
