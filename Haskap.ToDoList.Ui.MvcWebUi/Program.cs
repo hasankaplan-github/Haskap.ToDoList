@@ -4,7 +4,6 @@ using Microsoft.Net.Http.Headers;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient<AccountService>();
 builder.Services.AddHttpClient<ToDoListService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();

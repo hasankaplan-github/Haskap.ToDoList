@@ -10,21 +10,20 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ToDoListService _toDoListService;
-        private readonly AccountService _accountService;
 
-        public HomeController(ILogger<HomeController> logger, ToDoListService toDoListService, AccountService accountService)
+        public HomeController(ILogger<HomeController> logger, ToDoListService toDoListService)
         {
             _logger = logger;
             _toDoListService=toDoListService;
-            _accountService=accountService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var loginResult = await _accountService.Login(new LoginInputDto { Password= "123", UserName = "admin" });
-
-            Response.Cookies.Append("jwtToken", loginResult.Result.Token);
-
+            var loginResult = await _toDoListService.Login(new LoginInputDto { Password= "123", UserName = "admin" });
+            if (loginResult.HasError == false)
+            {
+                Response.Cookies.Append("jwtToken", loginResult.Result.Token);
+            }
             
             return View();
         }
