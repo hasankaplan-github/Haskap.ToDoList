@@ -24,7 +24,11 @@ public class CurrentUserMiddleware
                 httpContext.User.FindFirst("LastName")!.Value);
             currentUser.UserName = new UserName(httpContext.User.FindFirst("UserName")!.Value);
 
-            currentUserProvider.User = currentUser;
+            currentUserProvider.CurrentUser = currentUser;
+        }
+        else
+        {
+            currentUserProvider.CurrentUser = null;
         }
         
         await _next(httpContext);
