@@ -22,7 +22,7 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
             var loginResult = await _toDoListService.Login(new LoginInputDto { Password= "123", UserName = "admin" });
             if (loginResult.HasError == false)
             {
-                Response.Cookies.Append("jwtToken", loginResult.Result.Token);
+                //Response.Cookies.Append("jwtToken", loginResult.Result.Token);
             }
             
             return View();

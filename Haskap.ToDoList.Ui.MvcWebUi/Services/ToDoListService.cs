@@ -18,7 +18,7 @@ public class ToDoListService
         //_httpClient.DefaultRequestHeaders.Accept.Clear();
         //_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-        _httpClient.DefaultRequestHeaders.Add(HeaderNames.Authorization, $"Bearer {httpContextAccessor.HttpContext.Request.Cookies["jwtToken"]}");
+        _httpClient.DefaultRequestHeaders.Add(HeaderNames.Authorization, $"Bearer {httpContextAccessor.HttpContext.Request.Cookies["jwt"]}");
 //        _httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "*/*");
         //_httpClient.DefaultRequestHeaders.Add(HeaderNames.ContentType, "application/json");
     }
