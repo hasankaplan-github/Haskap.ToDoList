@@ -23,12 +23,21 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
         public async Task<IActionResult> Login(LoginInputDto loginInputDto)
         {
             var result = await _toDoListService.Login(loginInputDto);
+            
             if (result.HasError)
             {
+                ViewBag.ReturnUrl = loginInputDto.ReturnUrl;
                 return View(result);
             }
 
-            Response.Cookies.Append("jwt", result.Result.Token);
+            var cookieOptions = new CookieOptions { SameSite = SameSiteMode.Strict };
+            if (loginInputDto.RememberMe)
+                cookieOptions.Expires = DateTime.Now.AddDays(7);
+            else
+                cookieOptions.Expires = DateTime.Now.AddHours(1);
+            Response.Cookies.Append("jwt", result.Result!.Token, cookieOptions);
+            
+            loginInputDto.ReturnUrl = string.IsNullOrEmpty(loginInputDto.ReturnUrl) ? "/" : loginInputDto.ReturnUrl;
             return LocalRedirect(loginInputDto.ReturnUrl);
         }
     }

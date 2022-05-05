@@ -45,7 +45,9 @@ app.UseExceptionHandler(appBuilder =>
         var exception = exceptionHandlerPathFeature?.Error;
         if (exception is UnauthorizedAccessException)
         {
-            context.Response.Redirect("/Account/Login");
+            var controller = context.GetRouteValue("controller")?.ToString();
+            var action = context.GetRouteValue("action")?.ToString();
+            context.Response.Redirect($"/Account/Login?returnUrl={controller}/{action}");
         }
         else if (!app.Environment.IsDevelopment())
         {

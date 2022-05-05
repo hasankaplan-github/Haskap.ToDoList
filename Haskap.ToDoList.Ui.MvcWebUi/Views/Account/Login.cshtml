@@ -10,7 +10,7 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Admin</b>LTE</a>
+    <a href="#"><b>My</b>To Do List</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -82,7 +82,7 @@
             $(document).ready(function(){
                 Swal.fire(
                     'Hata',
-                    '@Model.ExceptionMessage' + @Environment.NewLine + '@Model.ExceptionStackTrace',
+                    '@Model.ExceptionMessage <br/> @Model.ExceptionStackTrace',
                     'error'
                 );
             });
