@@ -11,7 +11,8 @@ namespace Haskap.ToDoList.Application.UseCaseServices.Dtos.Mappings
     {
         public ToDoListProfile()
         {
-            CreateMap<Domain.Core.ToDoListAggregate.ToDoList, ToDoListOutputDto>();
+            CreateMap<Domain.Core.ToDoListAggregate.ToDoList, ToDoListOutputDto>()
+                .ForMember(dest => dest.ItemCount, opt => opt.MapFrom(src => src.ToDoItems.Count));
         }
     }
 }

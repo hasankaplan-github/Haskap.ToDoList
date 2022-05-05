@@ -82,6 +82,7 @@ public class ToDoListService : UseCaseService, IToDoListService
     public async Task<IEnumerable<ToDoListOutputDto>> GetToDoLists()
     {
         var toDoLists = await _appDbContext.ToDoList
+            .Include(x => x.ToDoItems)
             .Where(x => x.OwnerUserId == _ownerUserId)
             .ToListAsync();
 

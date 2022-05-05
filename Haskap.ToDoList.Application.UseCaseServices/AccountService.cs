@@ -17,12 +17,12 @@ public class AccountService : UseCaseService, IAccountService
     private readonly AppDbContext _appDbContext;
     public IConfiguration _configuration;
 
-    private User user = new User(Guid.NewGuid())
-    {
-        Name = new Name("John", null, "Doe"),
-        UserName=new UserName("john.doe"),
-        Password = new Password("123456")
-    };
+    //private User user = new User(Guid.NewGuid())
+    //{
+    //    Name = new Name("John", null, "Doe"),
+    //    UserName=new UserName("john.doe"),
+    //    Password = new Password("123456")
+    //};
 
     public AccountService(AppDbContext appDbContext, IConfiguration configuration)
     {
@@ -32,8 +32,7 @@ public class AccountService : UseCaseService, IAccountService
 
     public async Task<LoginOutputDto> LoginAsync(LoginInputDto input)
     {
-        //var user = _appDbContext.User.SingleOrDefault(x => x.UserName == input.UserName && x.Password == input.Password);
-        
+        var user = _appDbContext.User.SingleOrDefault(x => x.UserName.Value == input.UserName && x.Password.Value == input.Password);
 
         if (user is null)
         {

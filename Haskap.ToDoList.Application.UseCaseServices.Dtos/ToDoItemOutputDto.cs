@@ -8,6 +8,7 @@ namespace Haskap.ToDoList.Application.UseCaseServices.Dtos;
 
 public class ToDoItemOutputDto
 {
+    public Guid Id { get; set; }
     public string Content { get; set; }
     public DateTime? DueDate { get; set; }
     public bool IsCompleted { get; set; }

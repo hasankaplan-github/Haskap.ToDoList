@@ -1,0 +1,58 @@
+﻿@using Haskap.ToDoList.Application.UseCaseServices.Dtos
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Envelope<IEnumerable<ToDoListOutputDto>>
+
+@{
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <!-- Widget: user widget style 2 -->
+        <div class="card card-widget widget-user-2 shadow">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-warning">
+                <div class="widget-user-image">
+                    <img class="img-circle elevation-2" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
+                </div>
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username">Nadia Carmichael</h3>
+                @*<h5 class="widget-user-desc">Lead Developer</h5>*@
+            </div>
+            <div class="card-footer p-0">
+                <ul class="nav flex-column">
+                    @foreach(var toDoListOutputDto in Model.Result)
+                    {
+                        <li class="nav-item">
+                            <a asp-controller="ToDoItem" asp-action="List" asp-route-toDoListId="@toDoListOutputDto.Id" class="nav-link">
+                                @toDoListOutputDto.Name <span class="float-right badge bg-primary">@toDoListOutputDto.ItemCount</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <!-- /.widget-user -->
+    </div>
+    <!-- /.col -->
+</div>
+
+@section Scripts{
+    <script>
+        @if(Model?.HasError == true)
+        {
+            <text>
+            $(document).ready(function(){
+                Swal.fire(
+                    'Hata',
+                    '@Model.ExceptionMessage <br/> @Model.ExceptionStackTrace',
+                    'error'
+                );
+            });
+            </text>
+        }
+    </script>
+}

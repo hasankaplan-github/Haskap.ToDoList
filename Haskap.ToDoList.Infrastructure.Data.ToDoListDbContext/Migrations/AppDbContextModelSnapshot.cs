@@ -48,7 +48,7 @@ namespace Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.Migrations
 
                     b.HasIndex("OwnerToDoListId");
 
-                    b.ToTable("ToDoItem");
+                    b.ToTable("ToDoItem", (string)null);
                 });
 
             modelBuilder.Entity("Haskap.ToDoList.Domain.Core.ToDoListAggregate.ToDoList", b =>
@@ -66,7 +66,7 @@ namespace Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ToDoList");
+                    b.ToTable("ToDoList", (string)null);
                 });
 
             modelBuilder.Entity("Haskap.ToDoList.Domain.Core.UserAggregate.User", b =>
@@ -77,7 +77,7 @@ namespace Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Haskap.ToDoList.Domain.Core.ToDoListAggregate.ToDoItem", b =>
@@ -91,7 +91,7 @@ namespace Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.Migrations
 
             modelBuilder.Entity("Haskap.ToDoList.Domain.Core.UserAggregate.User", b =>
                 {
-                    b.OwnsOne("Haskap.ToDoList.Domain.Core.UserAggregate.Name", "Name", b1 =>
+                    b.OwnsOne("Haskap.ToDoList.Domain.Core.UserAggregate.User.Name#Haskap.ToDoList.Domain.Core.UserAggregate.Name", "Name", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -109,13 +109,13 @@ namespace Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.Migrations
 
                             b1.HasKey("UserId");
 
-                            b1.ToTable("User");
+                            b1.ToTable("User", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
                         });
 
-                    b.OwnsOne("Haskap.ToDoList.Domain.Core.UserAggregate.Password", "Password", b1 =>
+                    b.OwnsOne("Haskap.ToDoList.Domain.Core.UserAggregate.User.Password#Haskap.ToDoList.Domain.Core.UserAggregate.Password", "Password", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -126,13 +126,13 @@ namespace Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.Migrations
 
                             b1.HasKey("UserId");
 
-                            b1.ToTable("User");
+                            b1.ToTable("User", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
                         });
 
-                    b.OwnsOne("Haskap.ToDoList.Domain.Core.UserAggregate.UserName", "UserName", b1 =>
+                    b.OwnsOne("Haskap.ToDoList.Domain.Core.UserAggregate.User.UserName#Haskap.ToDoList.Domain.Core.UserAggregate.UserName", "UserName", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uuid");
@@ -143,7 +143,7 @@ namespace Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.Migrations
 
                             b1.HasKey("UserId");
 
-                            b1.ToTable("User");
+                            b1.ToTable("User", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
