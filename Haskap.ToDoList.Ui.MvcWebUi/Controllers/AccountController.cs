@@ -13,8 +13,10 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
             _toDoListService=toDoListService;
         }
         
-        public IActionResult Login(string returnUrl)
+        public async Task<IActionResult> Login(string returnUrl)
         {
+            //var result = await _toDoListService.Login(new LoginInputDto());
+            
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -22,6 +24,7 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginInputDto loginInputDto)
         {
+            //await _toDoListService.AddToDoList(new ToDoListInputDto());
             var result = await _toDoListService.Login(loginInputDto);
             
             if (result.HasError)
@@ -37,7 +40,7 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
                 cookieOptions.Expires = DateTime.Now.AddHours(1);
             Response.Cookies.Append("jwt", result.Result!.Token, cookieOptions);
             
-            loginInputDto.ReturnUrl = string.IsNullOrEmpty(loginInputDto.ReturnUrl) ? "/" : loginInputDto.ReturnUrl;
+            loginInputDto.ReturnUrl = string.IsNullOrEmpty(loginInputDto.ReturnUrl) ? "/ToDoList/List" : loginInputDto.ReturnUrl;
             return LocalRedirect(loginInputDto.ReturnUrl);
         }
     }

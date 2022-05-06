@@ -36,7 +36,7 @@ public class AccountService : UseCaseService, IAccountService
 
         if (user is null)
         {
-            throw new ArgumentNullException("User not found");
+            throw new Exception("User not found");
         }
 
         var claims = new[] {

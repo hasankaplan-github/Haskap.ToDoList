@@ -26,7 +26,7 @@ public class ToDoListService : UseCaseService, IToDoListService
     {
         _appDbContext=appDbContext;
         _mapper=mapper;
-        _ownerUserId=currentUserProvider.CurrentUser.Id;
+        _ownerUserId=currentUserProvider.CurrentUser==null ? Guid.Empty : currentUserProvider.CurrentUser.Id;
     }
 
     public async Task AddToDoList(ToDoListInputDto toDoListInputDto)

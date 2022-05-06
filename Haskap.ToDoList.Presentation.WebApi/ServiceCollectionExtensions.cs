@@ -17,6 +17,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<IAccountService, AccountService>();
         services.AddTransient<IToDoListService, ToDoListService>();
+        services.AddTransient<IToDoItemService, ToDoItemService>();
         //services.AddTransient<ICreditCardTypeService, CreditCardTypeService>();
         //services.AddTransient<IAccountService, AccountService>();
         //services.AddTransient<IReportService, ReportService>();

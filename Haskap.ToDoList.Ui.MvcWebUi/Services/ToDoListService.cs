@@ -19,9 +19,12 @@ public class ToDoListService
         //_httpClient.DefaultRequestHeaders.Accept.Clear();
         //_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+        _httpClient.DefaultRequestHeaders.Clear();
         _httpClient.DefaultRequestHeaders.Add(HeaderNames.Authorization, $"Bearer {httpContextAccessor.HttpContext.Request.Cookies["jwt"]}");
-        //        _httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "*/*");
-        //_httpClient.DefaultRequestHeaders.Add(HeaderNames.ContentType, "application/json");
+        _httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "*/*");
+        //_httpClient.DefaultRequestHeaders.Add(HeaderNames.ContentLength, "");
+        //_httpClient.DefaultRequestHeaders.Add(HeaderNames.Host, "localhost");
+        
     }
 
     #region Account
@@ -29,7 +32,14 @@ public class ToDoListService
     public async Task<Envelope<LoginOutputDto>> Login(LoginInputDto input)
     {
         //var httpResponseMessage = await _httpClient.PostAsJsonAsync("/account/login", input);
-        var httpResponseMessage = await _httpClient.PostAsync("/account/login", new StringContent(JsonSerializer.Serialize(input), Encoding.UTF8, "application/json"));
+        var jsonString = JsonSerializer.Serialize(input); //"{\"userName\":\"null\",\"password\":\"null\",\"rememberMe\":true,\"returnUrl\":null}";
+        var stringContent = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+        //stringContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+        //stringContent.Headers.ContentLength = jsonString.Length;
+        //stringContent.Headers.Add("Host", "localhost");
+
+        var httpResponseMessage = await _httpClient.PostAsync("Account/Login", stringContent);
         var result = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope<LoginOutputDto>>();
         //var result = JsonSerializer.Deserialize<Envelope<LoginOutputDto>>(resultJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
