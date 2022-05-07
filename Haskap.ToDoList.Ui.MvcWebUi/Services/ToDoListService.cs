@@ -64,13 +64,18 @@ public class ToDoListService
         return result;
     }
 
-    public async Task AddToDoList(ToDoListInputDto toDoListInputDto)
+    public async Task<Envelope<object>> AddToDoList(ToDoListInputDto toDoListInputDto)
     {
         var httpResponseMessage = await _httpClient.PostAsync("/ToDoList", new StringContent(JsonSerializer.Serialize(toDoListInputDto), Encoding.UTF8, "application/json"));
         if (httpResponseMessage.IsSuccessStatusCode == false && httpResponseMessage.StatusCode == HttpStatusCode.Unauthorized)
         {
             throw new UnauthorizedAccessException();
         }
+
+        //httpResponseMessage.EnsureSuccessStatusCode();
+        var result = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope<object>>();
+
+        return result;
     }
 
     public async Task DeleteToDoList(Guid toDoListId)

@@ -8,5 +8,5 @@ namespace Haskap.ToDoList.Application.UseCaseServices.Dtos;
 
 public class ToDoListInputDto
 {
-    public string Name { get; set; }
+    public string? Name { get; set; }
 }

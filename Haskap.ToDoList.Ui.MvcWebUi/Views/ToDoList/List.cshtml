@@ -10,18 +10,23 @@
 
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <!-- Widget: user widget style 2 -->
         <div class="card card-widget widget-user-2 shadow">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-warning">
+                
                 <div class="widget-user-image">
-                    <img class="img-circle elevation-2" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
+                    <img class="img-circle elevation-2" src="~/img/avatar5.png" width="50px" alt="User Avatar">
                 </div>
                 <!-- /.widget-user-image -->
-                <h3 class="widget-user-username">Nadia Carmichael</h3>
+                <h3 class="widget-user-username">
+                    Nadia Carmichael
+                    <button class="btn btn-primary float-right" data-toggle="modal" data-target="#newToDoListModal">Yeni Liste Ekle</button>
+                </h3>
                 @*<h5 class="widget-user-desc">Lead Developer</h5>*@
             </div>
+            
             <div class="card-footer p-0">
                 <ul class="nav flex-column">
                     @foreach(var toDoListOutputDto in Model.Result)
@@ -40,6 +45,34 @@
     <!-- /.col -->
 </div>
 
+
+<div class="modal fade" id="newToDoListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yeni Liste Ekle</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="listNameInput" class="form-label">Liste İsmi :</label>
+                    <input type="text" class="form-control" id="listNameInput" />
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="saveChangesButton" type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @section Scripts{
     <script>
         @if(Model?.HasError == true)
@@ -54,5 +87,45 @@
             });
             </text>
         }
+
+        $("#saveChangesButton").click(function(){
+            $.ajax({
+              method: "POST",
+              url: "@Url.Action("AddToDoList", "ToDoList")",
+              data: { 
+                  name: $("#listNameInput").val() 
+              }
+            }).done(function( resultEnvelope, status, xhr ) {
+                //Swal.fire(
+                //        'Hata',
+                //        JSON.stringify(result),
+                //        'error'
+                //    );
+                //return;
+                if(resultEnvelope.hasError){
+                    Swal.fire(
+                        'Hata',
+                        resultEnvelope.exceptionMessage + '<br/>' + resultEnvelope.exceptionStackTrace,
+                        'error'
+                    );
+                }else{
+                    Swal.fire(
+                        'Başarılı',
+                        'Liste ismi başarıyla kaydedildi.',
+                        'success'
+                    ).then(() => {
+                        $('#newToDoListModal').modal('toggle')
+                        location.reload();
+                    });
+                    //$("#creditCardTypeTable").DataTable().ajax.reload();
+                }
+            }).fail(function(xhr, status, error){
+                Swal.fire(
+                    'Hata',
+                    xhr.responseText,
+                    'error'
+                );
+            });
+        });
     </script>
 }
