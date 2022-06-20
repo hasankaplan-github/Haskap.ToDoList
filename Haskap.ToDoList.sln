@@ -43,7 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6710F2CF-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jwt", "Jwt", "{EE1DA5F9-D166-444D-9E44-0C658A35F758}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Infrastructure.Jwt", "Haskap.ToDoList.Infrastructure.Jwt.Generator\Haskap.ToDoList.Infrastructure.Jwt.csproj", "{BD71E47D-1770-4631-B5C8-7BE696180613}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Infrastructure.Jwt", "Haskap.ToDoList.Infrastructure.Jwt\Haskap.ToDoList.Infrastructure.Jwt.csproj", "{BD71E47D-1770-4631-B5C8-7BE696180613}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{1DBA6B70-8E84-42A1-824D-0092C37FC285}"
 EndProject
