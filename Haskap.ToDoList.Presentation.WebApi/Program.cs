@@ -9,10 +9,13 @@ using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Text.Json;
 using Haskap.ToDoList.Presentation.WebApi.Middlewares;
+using Haskap.ToDoList.Infrastructure.Jwt;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(JwtSettings.SectionName));
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -24,15 +27,16 @@ builder.Services
         {
             ValidateIssuer = true,
             ValidateAudience = true,
-            ValidAudience = builder.Configuration["JwtSettings:Audience"],
-            ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Secret"])),
+            ValidAudience = builder.Configuration[JwtSettings.SectionName + ":" + nameof(JwtSettings.Audience)],
+            ValidIssuer = builder.Configuration[JwtSettings.SectionName + ":" + nameof(JwtSettings.Issuer)],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration[JwtSettings.SectionName + ":" + nameof(JwtSettings.Secret)])),
             ClockSkew = TimeSpan.Zero
         };
     });
 
 var connectionString = builder.Configuration.GetConnectionString("ToDoListConnectionString");
-builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) => {
+builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
+{
     options.UseNpgsql(connectionString);
     //options.AddInterceptors(serviceProvider.GetRequiredService<AuditSaveChangesInterceptor<Guid?>>());
     //options.AddInterceptors(serviceProvider.GetRequiredService<AuditHistoryLogSaveChangesInterceptor<Guid?>>());
@@ -74,7 +78,7 @@ app.UseExceptionHandler(exceptionHandlerApp =>
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
         }
 
-        app.Logger.LogError($"{JsonSerializer.Serialize(errorEnvelope)}{ Environment.NewLine}" +
+        app.Logger.LogError($"{JsonSerializer.Serialize(errorEnvelope)}{Environment.NewLine}" +
             $"=====================================================================================================================");
 
         if (app.Environment.IsDevelopment() == false)

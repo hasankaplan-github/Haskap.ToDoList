@@ -15,7 +15,9 @@ namespace Haskap.ToDoList.Application.UseCaseServices;
 public class AccountService : UseCaseService, IAccountService
 {
     private readonly AppDbContext _appDbContext;
-    public IConfiguration _configuration;
+    //public IConfiguration _configuration;
+    private readonly IJwtGenerator _jwtGenerator;
+
 
     //private User user = new User(Guid.NewGuid())
     //{
@@ -24,10 +26,11 @@ public class AccountService : UseCaseService, IAccountService
     //    Password = new Password("123456")
     //};
 
-    public AccountService(AppDbContext appDbContext, IConfiguration configuration)
+    public AccountService(AppDbContext appDbContext, /*IConfiguration configuration,*/ IJwtGenerator jwtGenerator)
     {
         _appDbContext=appDbContext;
-        _configuration=configuration;
+        //_configuration=configuration;
+        _jwtGenerator=jwtGenerator;
     }
 
     public async Task<LoginOutputDto> LoginAsync(LoginInputDto input)
@@ -43,31 +46,17 @@ public class AccountService : UseCaseService, IAccountService
                         new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                         new Claim(JwtRegisteredClaimNames.Jti, GuidGenerator.CreateSimpleGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("FirstName", user.Name.FirstName),
-                        new Claim("MiddleName", user.Name.MiddleName ?? string.Empty),
-                        new Claim("LastName", user.Name.LastName),
-                        new Claim("UserName", user.UserName.Value),
+                        new Claim(JwtRegisteredClaimNames.GivenName, user.Name.FirstName),
+                        new Claim(JwtRegisteredClaimNames.GivenName + "_2", user.Name.MiddleName ?? string.Empty),
+                        new Claim(JwtRegisteredClaimNames.FamilyName, user.Name.LastName),
+                        new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName.Value),
                     };
 
-        var token = GenerateToken(claims);
+        var token = _jwtGenerator.GenerateToken(claims);
 
         return new LoginOutputDto
         {
             Token=token
         };
-    }
-
-    private string GenerateToken(Claim[] claims)
-    {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Secret"]));
-        var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-        var token = new JwtSecurityToken(
-            _configuration["JwtSettings:Issuer"],
-            _configuration["JwtSettings:Audience"],
-            claims,
-            expires: DateTime.UtcNow.AddMinutes(10),
-            signingCredentials: signingCredentials);
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

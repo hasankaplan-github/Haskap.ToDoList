@@ -19,10 +19,10 @@ public class CurrentUserMiddleware
         {
             var currentUser = new User(Guid.Parse(httpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value));
             currentUser.Name = new Name(
-                httpContext.User.FindFirst("FirstName")!.Value,
-                httpContext.User.FindFirst("MiddleName")?.Value,
-                httpContext.User.FindFirst("LastName")!.Value);
-            currentUser.UserName = new UserName(httpContext.User.FindFirst("UserName")!.Value);
+                httpContext.User.FindFirst(ClaimTypes.GivenName)!.Value,
+                httpContext.User.FindFirst(ClaimTypes.GivenName + "_2")?.Value,
+                httpContext.User.FindFirst(ClaimTypes.Surname)!.Value);
+            currentUser.UserName = new UserName(httpContext.User.FindFirst(ClaimTypes.Name)!.Value);
 
             currentUserProvider.CurrentUser = currentUser;
         }

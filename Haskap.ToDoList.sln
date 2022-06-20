@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Presentation.WebApi", "Haskap.ToDoList.Presentation.WebApi\Haskap.ToDoList.Presentation.WebApi.csproj", "{C832A6AD-92B0-487D-84C4-2D3588AB7B3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Presentation.WebApi", "Haskap.ToDoList.Presentation.WebApi\Haskap.ToDoList.Presentation.WebApi.csproj", "{C832A6AD-92B0-487D-84C4-2D3588AB7B3D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{5BAE737E-4EF3-4153-BFAA-14F47FD377BB}"
 EndProject
@@ -17,29 +17,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ui", "Ui", "{2E1B9609-EF3D-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{BF69EEA6-34FC-4905-9B9B-A14D9C73BABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.Core", "Haskap.ToDoList.Domain.Core\Haskap.ToDoList.Domain.Core.csproj", "{8024C780-5724-4BF4-813D-78A4BA553F9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Domain.Core", "Haskap.ToDoList.Domain.Core\Haskap.ToDoList.Domain.Core.csproj", "{8024C780-5724-4BF4-813D-78A4BA553F9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.Services", "Haskap.ToDoList.Domain.Services\Haskap.ToDoList.Domain.Services.csproj", "{434E4552-308F-43E0-89D1-0FC59041925C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Domain.Services", "Haskap.ToDoList.Domain.Services\Haskap.ToDoList.Domain.Services.csproj", "{434E4552-308F-43E0-89D1-0FC59041925C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.Providers", "Haskap.ToDoList.Domain.Providers\Haskap.ToDoList.Domain.Providers.csproj", "{4459EA0A-8189-4F89-A1E7-7A896D7D5A6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Domain.Providers", "Haskap.ToDoList.Domain.Providers\Haskap.ToDoList.Domain.Providers.csproj", "{4459EA0A-8189-4F89-A1E7-7A896D7D5A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.Core.Shared", "Haskap.ToDoList.Domain.Core.Shared\Haskap.ToDoList.Domain.Core.Shared.csproj", "{4425BA31-53F1-450A-8EE7-5955872F3025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Domain.Core.Shared", "Haskap.ToDoList.Domain.Core.Shared\Haskap.ToDoList.Domain.Core.Shared.csproj", "{4425BA31-53F1-450A-8EE7-5955872F3025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Application.UseCaseServices", "Haskap.ToDoList.Application.UseCaseServices\Haskap.ToDoList.Application.UseCaseServices.csproj", "{01A52042-81BF-48D4-B964-7668FC8AD690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Application.UseCaseServices", "Haskap.ToDoList.Application.UseCaseServices\Haskap.ToDoList.Application.UseCaseServices.csproj", "{01A52042-81BF-48D4-B964-7668FC8AD690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Application.UseCaseServices.Contracts", "Haskap.ToDoList.Application.UseCaseServices.Contracts\Haskap.ToDoList.Application.UseCaseServices.Contracts.csproj", "{D4127067-CEA5-43EC-A8E6-65684567E044}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Application.UseCaseServices.Contracts", "Haskap.ToDoList.Application.UseCaseServices.Contracts\Haskap.ToDoList.Application.UseCaseServices.Contracts.csproj", "{D4127067-CEA5-43EC-A8E6-65684567E044}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Application.UseCaseServices.Dtos", "Haskap.ToDoList.Application.UseCaseServices.Dtos\Haskap.ToDoList.Application.UseCaseServices.Dtos.csproj", "{425EEE40-1A1A-473A-B8F5-4ED255DAAC21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Application.UseCaseServices.Dtos", "Haskap.ToDoList.Application.UseCaseServices.Dtos\Haskap.ToDoList.Application.UseCaseServices.Dtos.csproj", "{425EEE40-1A1A-473A-B8F5-4ED255DAAC21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Application.EventHandlers", "Haskap.ToDoList.Application.EventHandlers\Haskap.ToDoList.Application.EventHandlers.csproj", "{88A19145-3422-4AF5-AFD5-2A317C574E06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Application.EventHandlers", "Haskap.ToDoList.Application.EventHandlers\Haskap.ToDoList.Application.EventHandlers.csproj", "{88A19145-3422-4AF5-AFD5-2A317C574E06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Domain.EventHandlers", "Haskap.ToDoList.Domain.EventHandlers\Haskap.ToDoList.Domain.EventHandlers.csproj", "{2AC30C91-68DA-46BE-8F2E-B8BD784DB424}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Domain.EventHandlers", "Haskap.ToDoList.Domain.EventHandlers\Haskap.ToDoList.Domain.EventHandlers.csproj", "{2AC30C91-68DA-46BE-8F2E-B8BD784DB424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext", "Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext\Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.csproj", "{57CDB5C6-DD91-4309-961F-03D39A6BA253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext", "Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext\Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.csproj", "{57CDB5C6-DD91-4309-961F-03D39A6BA253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Ui.MvcWebUi", "Haskap.ToDoList.Ui.MvcWebUi\Haskap.ToDoList.Ui.MvcWebUi.csproj", "{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haskap.ToDoList.Ui.MvcWebUi", "Haskap.ToDoList.Ui.MvcWebUi\Haskap.ToDoList.Ui.MvcWebUi.csproj", "{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6710F2CF-9D40-4B39-A178-6D4120B5A96D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jwt", "Jwt", "{EE1DA5F9-D166-444D-9E44-0C658A35F758}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Infrastructure.Jwt", "Haskap.ToDoList.Infrastructure.Jwt.Generator\Haskap.ToDoList.Infrastructure.Jwt.csproj", "{BD71E47D-1770-4631-B5C8-7BE696180613}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{1DBA6B70-8E84-42A1-824D-0092C37FC285}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haskap.ToDoList.Infrastructure.Providers", "Haskap.ToDoList.Infrastructure.Providers\Haskap.ToDoList.Infrastructure.Providers.csproj", "{8B814973-0905-4426-8FD8-26B2F495C881}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +103,14 @@ Global
 		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD71E47D-1770-4631-B5C8-7BE696180613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD71E47D-1770-4631-B5C8-7BE696180613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD71E47D-1770-4631-B5C8-7BE696180613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD71E47D-1770-4631-B5C8-7BE696180613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B814973-0905-4426-8FD8-26B2F495C881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B814973-0905-4426-8FD8-26B2F495C881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B814973-0905-4426-8FD8-26B2F495C881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B814973-0905-4426-8FD8-26B2F495C881}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +129,10 @@ Global
 		{57CDB5C6-DD91-4309-961F-03D39A6BA253} = {6710F2CF-9D40-4B39-A178-6D4120B5A96D}
 		{F8C26FF1-A8C8-4481-82BC-490C20D5BBD3} = {2E1B9609-EF3D-4DF5-B049-21F26C79516F}
 		{6710F2CF-9D40-4B39-A178-6D4120B5A96D} = {617B1792-43B4-47DF-94E5-D9D2843F96F2}
+		{EE1DA5F9-D166-444D-9E44-0C658A35F758} = {617B1792-43B4-47DF-94E5-D9D2843F96F2}
+		{BD71E47D-1770-4631-B5C8-7BE696180613} = {EE1DA5F9-D166-444D-9E44-0C658A35F758}
+		{1DBA6B70-8E84-42A1-824D-0092C37FC285} = {617B1792-43B4-47DF-94E5-D9D2843F96F2}
+		{8B814973-0905-4426-8FD8-26B2F495C881} = {1DBA6B70-8E84-42A1-824D-0092C37FC285}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAF62B9D-AF32-48A8-84AC-2E416A33BFFF}
