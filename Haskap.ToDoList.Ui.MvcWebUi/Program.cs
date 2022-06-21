@@ -1,11 +1,17 @@
 using Haskap.ToDoList.Ui.MvcWebUi.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Net.Http.Headers;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient<ToDoListService>();
+builder.Services.AddHttpClient<ToDoListService>(httpClient =>
+{
+    httpClient.BaseAddress = new Uri(builder.Configuration["ToDoListApiBaseUrl"]);
+    httpClient.DefaultRequestHeaders.Clear();
+    httpClient.DefaultRequestHeaders.Add(HeaderNames.Accept, "*/*");
+});
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
 
@@ -43,11 +49,14 @@ app.UseExceptionHandler(appBuilder =>
 
         var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
         var exception = exceptionHandlerPathFeature?.Error;
-        if (exception is UnauthorizedAccessException)
+        if (exception is HttpRequestException httpRequestException)
         {
-            //var controller = context.GetRouteValue("controller")?.ToString();
-            //var action = context.GetRouteValue("action")?.ToString();
-            context.Response.Redirect($"/Account/Login?returnUrl={context.Request.Path.Value}");
+            if (httpRequestException.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                //var controller = context.GetRouteValue("controller")?.ToString();
+                //var action = context.GetRouteValue("action")?.ToString();
+                context.Response.Redirect($"/Account/Login?returnUrl={context.Request.Path.Value}");
+            }
         }
         else if (!app.Environment.IsDevelopment())
         {
