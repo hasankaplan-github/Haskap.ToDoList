@@ -27,9 +27,9 @@ builder.Services
         {
             ValidateIssuer = true,
             ValidateAudience = true,
-            ValidAudience = builder.Configuration[JwtSettings.SectionName + ":" + nameof(JwtSettings.Audience)],
-            ValidIssuer = builder.Configuration[JwtSettings.SectionName + ":" + nameof(JwtSettings.Issuer)],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration[JwtSettings.SectionName + ":" + nameof(JwtSettings.Secret)])),
+            ValidAudience = builder.Configuration[$"{JwtSettings.SectionName}:{nameof(JwtSettings.Audience)}"],
+            ValidIssuer = builder.Configuration[$"{JwtSettings.SectionName}:{nameof(JwtSettings.Issuer)}"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration[$"{JwtSettings.SectionName}:{nameof(JwtSettings.Secret)}"])),
             ClockSkew = TimeSpan.Zero
         };
     });
