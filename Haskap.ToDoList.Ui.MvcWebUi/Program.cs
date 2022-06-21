@@ -59,8 +59,12 @@ app.UseExceptionHandler(appBuilder =>
                 var queryString = context.Request.QueryString.HasValue ? context.Request.QueryString.Value : string.Empty;
                 context.Response.Redirect($"/Account/Login?returnUrl={path}{queryString}");
             }
+            else
+            {
+                context.Response.Redirect("/Home/Error");
+            }
         }
-        else if (!app.Environment.IsDevelopment())
+        else //if (!app.Environment.IsDevelopment())
         {
             context.Response.Redirect("/Home/Error");
         }
