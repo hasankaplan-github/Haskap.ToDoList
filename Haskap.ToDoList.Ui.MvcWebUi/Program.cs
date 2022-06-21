@@ -55,7 +55,9 @@ app.UseExceptionHandler(appBuilder =>
             {
                 //var controller = context.GetRouteValue("controller")?.ToString();
                 //var action = context.GetRouteValue("action")?.ToString();
-                context.Response.Redirect($"/Account/Login?returnUrl={context.Request.Path.Value}");
+                var path = context.Request.Path.HasValue ? context.Request.Path.Value : string.Empty;
+                var queryString = context.Request.QueryString.HasValue ? context.Request.QueryString.Value : string.Empty;
+                context.Response.Redirect($"/Account/Login?returnUrl={path}{queryString}");
             }
         }
         else if (!app.Environment.IsDevelopment())
