@@ -71,10 +71,11 @@ public class ToDoListService : UseCaseService, IToDoListService
             throw new Exception("You are not the owner of this list");
         }
 
-        foreach (var toDoItem in toDoList.ToDoItems)
-        {
-            toDoItem.MarkAsCompleted();
-        }
+        // foreach (var toDoItem in toDoList.ToDoItems)
+        // {
+        //     toDoItem.MarkAsCompleted();
+        // }
+        toDoList.MarkAsCompleted();
         
         await _appDbContext.SaveChangesAsync();
     }

@@ -55,4 +55,12 @@ public class ToDoList : AggregateRoot
         Guard.Against.Null(toDoItem);
         toDoItems.Remove(toDoItem);
     }
+
+    public void MarkAsCompleted()
+    {
+        foreach (var toDoItem in toDoItems)
+        {
+            toDoItem.MarkAsCompleted();            
+        } 
+    }
 }
