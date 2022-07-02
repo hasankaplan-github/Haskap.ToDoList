@@ -3,7 +3,6 @@ using Haskap.ToDoList.Application.UseCaseServices;
 using Haskap.ToDoList.Application.UseCaseServices.Contracts;
 using Haskap.ToDoList.Domain.Core.UserAggregate;
 using Haskap.ToDoList.Domain.Providers;
-using Haskap.ToDoList.Infrastructure.Jwt;
 using Haskap.ToDoList.Infrastructure.Providers;
 
 namespace Haskap.ToDoList.Presentation.WebApi;
@@ -30,7 +29,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<CurrentUserProvider<User, Guid>>();
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-        services.AddSingleton<IJwtGenerator, JwtGenerator>();
+        services.AddSingleton<IJwtProvider, JwtProvider>();
         //services.AddSingleton<VisitIdProvider>();
         //services.AddSingleton<ApplicationIdProvider>();
     }

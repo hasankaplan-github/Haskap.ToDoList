@@ -3,6 +3,7 @@ using Haskap.DddBase.Utilities.Guids;
 using Haskap.ToDoList.Application.UseCaseServices.Contracts;
 using Haskap.ToDoList.Application.UseCaseServices.Dtos;
 using Haskap.ToDoList.Domain.Core.UserAggregate;
+using Haskap.ToDoList.Domain.Providers;
 using Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -16,7 +17,7 @@ public class AccountService : UseCaseService, IAccountService
 {
     private readonly AppDbContext _appDbContext;
     //public IConfiguration _configuration;
-    private readonly IJwtGenerator _jwtGenerator;
+    private readonly IJwtProvider _jwtProvider;
 
 
     //private User user = new User(Guid.NewGuid())
@@ -26,11 +27,11 @@ public class AccountService : UseCaseService, IAccountService
     //    Password = new Password("123456")
     //};
 
-    public AccountService(AppDbContext appDbContext, /*IConfiguration configuration,*/ IJwtGenerator jwtGenerator)
+    public AccountService(AppDbContext appDbContext, /*IConfiguration configuration,*/ IJwtProvider jwtProvider)
     {
         _appDbContext=appDbContext;
         //_configuration=configuration;
-        _jwtGenerator=jwtGenerator;
+        _jwtProvider=jwtProvider;
     }
 
     public async Task<LoginOutputDto> LoginAsync(LoginInputDto input)
@@ -52,7 +53,7 @@ public class AccountService : UseCaseService, IAccountService
                         new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName.Value),
                     };
 
-        var token = _jwtGenerator.GenerateToken(claims);
+        var token = _jwtProvider.GenerateToken(claims);
 
         return new LoginOutputDto
         {

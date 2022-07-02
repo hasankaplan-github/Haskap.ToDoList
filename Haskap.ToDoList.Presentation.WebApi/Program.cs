@@ -9,8 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Text.Json;
 using Haskap.ToDoList.Presentation.WebApi.Middlewares;
-using Haskap.ToDoList.Infrastructure.Jwt;
-using Microsoft.Extensions.Options;
+using Haskap.ToDoList.Infrastructure.Providers;
 
 var builder = WebApplication.CreateBuilder(args);
 

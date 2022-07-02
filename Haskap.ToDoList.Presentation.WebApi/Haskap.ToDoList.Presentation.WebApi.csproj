@@ -28,7 +28,6 @@
     <ProjectReference Include="..\Haskap.ToDoList.Domain.Providers\Haskap.ToDoList.Domain.Providers.csproj" />
     <ProjectReference Include="..\Haskap.ToDoList.Domain.Services\Haskap.ToDoList.Domain.Services.csproj" />
     <ProjectReference Include="..\Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext\Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext.csproj" />
-    <ProjectReference Include="..\Haskap.ToDoList.Infrastructure.Jwt\Haskap.ToDoList.Infrastructure.Jwt.csproj" />
     <ProjectReference Include="..\Haskap.ToDoList.Infrastructure.Providers\Haskap.ToDoList.Infrastructure.Providers.csproj" />
   </ItemGroup>
 
