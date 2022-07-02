@@ -15,8 +15,6 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
         
         public async Task<IActionResult> Login(string returnUrl)
         {
-            //var result = await _toDoListService.Login(new LoginInputDto());
-            
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -24,7 +22,6 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginInputDto loginInputDto)
         {
-            //await _toDoListService.AddToDoList(new ToDoListInputDto());
             var envelope = await _toDoListHttpClient.Login(loginInputDto);
             
             if (envelope.HasError)

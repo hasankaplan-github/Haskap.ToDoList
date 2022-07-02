@@ -31,7 +31,11 @@ public class ToDoListService : UseCaseService, IToDoListService
 
     public async Task AddToDoList(ToDoListInputDto toDoListInputDto)
     {
-        var toDoList = new Domain.Core.ToDoListAggregate.ToDoList(_ownerUserId, toDoListInputDto.Name);
+        var toDoList = new Domain.Core.ToDoListAggregate.ToDoList(
+            GuidGenerator.CreateSimpleGuid(), 
+            _ownerUserId, 
+            toDoListInputDto.Name
+            );
         await _appDbContext.ToDoList.AddAsync(toDoList);
         await _appDbContext.SaveChangesAsync();
     }

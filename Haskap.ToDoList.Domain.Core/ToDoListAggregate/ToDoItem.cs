@@ -19,7 +19,7 @@ public class ToDoItem : Entity
     {
         get 
         {
-            return DueDate.HasValue && DueDate.Value < DateTime.Now;
+            return DueDate.HasValue && DueDate.Value > DateTime.Now;
         }
     }
     public DateTime DateAdded { get; private set; }

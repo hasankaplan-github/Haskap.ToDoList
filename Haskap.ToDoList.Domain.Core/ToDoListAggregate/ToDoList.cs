@@ -12,26 +12,27 @@ namespace Haskap.ToDoList.Domain.Core.ToDoListAggregate;
 public class ToDoList : AggregateRoot
 {
     public string Name { get; private set; }
-    private List<ToDoItem> toDoItems;
-    public IReadOnlyCollection<ToDoItem> ToDoItems => toDoItems.AsReadOnly();
+    private List<ToDoItem> _toDoItems;
+    public IReadOnlyCollection<ToDoItem> ToDoItems => _toDoItems.AsReadOnly();
     public Guid OwnerUserId { get; private set; }
     public bool IsCompleted 
     { 
         get 
         {
-            return ToDoItems.All(x => x.IsCompleted);
+            return _toDoItems.All(x => x.IsCompleted);
         } 
     }
 
 
     private ToDoList()
     {
-        toDoItems = new List<ToDoItem>();
     }
 
-    public ToDoList(Guid ownerUserId, string name)
-        : this()
+    public ToDoList(Guid id, Guid ownerUserId, string name)
+        : base(id)
     {
+        _toDoItems = new List<ToDoItem>();
+
         SetName(name);
         OwnerUserId = ownerUserId;
     }
@@ -47,18 +48,18 @@ public class ToDoList : AggregateRoot
     public void AddToDoItem(ToDoItem toDoItem)
     {
         Guard.Against.Null(toDoItem);
-        toDoItems.Add(toDoItem);
+        _toDoItems.Add(toDoItem);
     }
 
     public void RemoveToDoItem(ToDoItem toDoItem)
     {
         Guard.Against.Null(toDoItem);
-        toDoItems.Remove(toDoItem);
+        _toDoItems.Remove(toDoItem);
     }
 
     public void MarkAsCompleted()
     {
-        foreach (var toDoItem in toDoItems)
+        foreach (var toDoItem in _toDoItems)
         {
             toDoItem.MarkAsCompleted();            
         } 
