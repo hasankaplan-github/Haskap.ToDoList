@@ -1,5 +1,5 @@
 using Haskap.ToDoList.Ui.MvcWebUi;
-using Haskap.ToDoList.Ui.MvcWebUi.Services;
+using Haskap.ToDoList.Ui.MvcWebUi.HttpClients;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Net.Http.Headers;
 using System.Net;
@@ -7,7 +7,7 @@ using System.Net;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient<ToDoListService>(httpClient =>
+builder.Services.AddHttpClient<ToDoListHttpClient>(httpClient =>
 {
     httpClient.BaseAddress = new Uri(builder.Configuration["ToDoListApiBaseUrl"]);
     httpClient.DefaultRequestHeaders.Clear();

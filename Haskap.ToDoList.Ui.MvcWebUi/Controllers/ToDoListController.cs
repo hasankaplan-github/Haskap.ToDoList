@@ -1,28 +1,28 @@
 ﻿using Haskap.ToDoList.Application.UseCaseServices.Dtos;
-using Haskap.ToDoList.Ui.MvcWebUi.Services;
+using Haskap.ToDoList.Ui.MvcWebUi.HttpClients;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers;
 
 public class ToDoListController : Controller
 {
-    private readonly ToDoListService _toDoListService;
+    private readonly ToDoListHttpClient _toDoListHttpClient;
 
-    public ToDoListController(ToDoListService toDoListService)
+    public ToDoListController(ToDoListHttpClient toDoListHttpClient)
     {
-        _toDoListService=toDoListService;
+        _toDoListHttpClient=toDoListHttpClient;
     }
 
     public async Task<IActionResult> List()
     {
-        var lists = await _toDoListService.GetToDoLists<IEnumerable<ToDoListOutputDto>>();
+        var lists = await _toDoListHttpClient.GetToDoLists<IEnumerable<ToDoListOutputDto>>();
         return View(lists);
     }
 
     [HttpPost]
     public async Task<JsonResult> AddToDoList(ToDoListInputDto toDoListInputDto)
     {
-        var result = await _toDoListService.AddToDoList(toDoListInputDto);
+        var result = await _toDoListHttpClient.AddToDoList(toDoListInputDto);
 
         return Json(result);
     }

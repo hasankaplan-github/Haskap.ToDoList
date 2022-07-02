@@ -76,19 +76,6 @@
 
 @section Scripts{
     <script>
-        @if(Model?.HasError == true)
-        {
-            <text>
-            $(document).ready(function(){
-                Swal.fire(
-                    'Hata',
-                    '@Model.ExceptionMessage <br/> @Model.ExceptionStackTrace',
-                    'error'
-                );
-            });
-            </text>
-        }
-
         $("#loginForm").submit(function(event){
             let userName = $("#userName").val();
             let password = $("#password").val();

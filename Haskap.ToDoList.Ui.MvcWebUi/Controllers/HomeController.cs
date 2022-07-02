@@ -1,6 +1,5 @@
 ﻿using Haskap.ToDoList.Application.UseCaseServices.Dtos;
 using Haskap.ToDoList.Ui.MvcWebUi.Models;
-using Haskap.ToDoList.Ui.MvcWebUi.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

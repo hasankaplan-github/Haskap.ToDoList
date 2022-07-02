@@ -16,9 +16,9 @@ public class AccountController : BaseController
     }
 
     [HttpPost("Login")]
-    public async Task<IActionResult> Login(LoginInputDto input)
+    public async Task<IActionResult> Login(LoginInputDto loginInputDto)
     {
-        var output = await _accountService.LoginAsync(input);
-        return Ok(output);
+        var loginOutputDto = await _accountService.LoginAsync(loginInputDto);
+        return Ok(loginOutputDto);
     }
 }

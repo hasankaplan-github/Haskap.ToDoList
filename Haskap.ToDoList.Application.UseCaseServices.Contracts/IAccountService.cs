@@ -10,5 +10,5 @@ namespace Haskap.ToDoList.Application.UseCaseServices.Contracts;
 
 public interface IAccountService : IUseCaseService
 {
-    Task<LoginOutputDto> LoginAsync(LoginInputDto input);
+    Task<LoginOutputDto> LoginAsync(LoginInputDto loginInputDto);
 }

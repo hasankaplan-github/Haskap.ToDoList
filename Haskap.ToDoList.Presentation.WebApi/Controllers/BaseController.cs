@@ -2,7 +2,7 @@
 
 namespace Haskap.ToDoList.Presentation.WebApi.Controllers;
 
-public class BaseController : Controller
+public class BaseController : ControllerBase
 {
     protected new IActionResult Ok()
     {

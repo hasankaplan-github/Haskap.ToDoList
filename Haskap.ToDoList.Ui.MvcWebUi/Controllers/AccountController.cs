@@ -1,16 +1,16 @@
 ﻿using Haskap.ToDoList.Application.UseCaseServices.Dtos;
-using Haskap.ToDoList.Ui.MvcWebUi.Services;
+using Haskap.ToDoList.Ui.MvcWebUi.HttpClients;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ToDoListService _toDoListService;
+        private readonly ToDoListHttpClient _toDoListHttpClient;
 
-        public AccountController(ToDoListService toDoListService)
+        public AccountController(ToDoListHttpClient toDoListHttpClient)
         {
-            _toDoListService=toDoListService;
+            _toDoListHttpClient=toDoListHttpClient;
         }
         
         public async Task<IActionResult> Login(string returnUrl)
@@ -25,12 +25,12 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
         public async Task<IActionResult> Login(LoginInputDto loginInputDto)
         {
             //await _toDoListService.AddToDoList(new ToDoListInputDto());
-            var result = await _toDoListService.Login(loginInputDto);
+            var envelope = await _toDoListHttpClient.Login(loginInputDto);
             
-            if (result.HasError)
+            if (envelope.HasError)
             {
                 ViewBag.ReturnUrl = loginInputDto.ReturnUrl;
-                return View(result);
+                return View(envelope);
             }
 
             var cookieOptions = new CookieOptions { SameSite = SameSiteMode.Strict };
@@ -38,7 +38,7 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
                 cookieOptions.Expires = DateTime.Now.AddDays(7);
             else
                 cookieOptions.Expires = DateTime.Now.AddHours(1);
-            Response.Cookies.Append("jwt", result.Result!.Token, cookieOptions);
+            Response.Cookies.Append("jwt", envelope.Result!.Token, cookieOptions);
             
             loginInputDto.ReturnUrl = string.IsNullOrEmpty(loginInputDto.ReturnUrl) ? "/ToDoList/List" : loginInputDto.ReturnUrl;
             return LocalRedirect(loginInputDto.ReturnUrl);

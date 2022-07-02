@@ -5,14 +5,14 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
-namespace Haskap.ToDoList.Ui.MvcWebUi.Services;
+namespace Haskap.ToDoList.Ui.MvcWebUi.HttpClients;
 
-public class ToDoListService
+public class ToDoListHttpClient
 {
     private readonly HttpClient _httpClient;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public ToDoListService(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
+    public ToDoListHttpClient(HttpClient httpClient, IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
         _httpClient = httpClient;
@@ -32,10 +32,10 @@ public class ToDoListService
         //stringContent.Headers.Add("Host", "localhost");
 
         var httpResponseMessage = await _httpClient.PostAsync("Account/Login", stringContent);
-        var result = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope<LoginOutputDto>>();
+        var envelope = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope<LoginOutputDto>>();
         //var result = JsonSerializer.Deserialize<Envelope<LoginOutputDto>>(resultJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-        return result;
+        return envelope!;
     }
 
     #endregion
@@ -54,9 +54,9 @@ public class ToDoListService
     public async Task<Envelope> AddToDoList(ToDoListInputDto toDoListInputDto)
     {
         var httpResponseMessage = await _httpClient.PostAsync("/ToDoList", new StringContent(JsonSerializer.Serialize(toDoListInputDto), Encoding.UTF8, "application/json"));
-        var result = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope>();
+        var envelope = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope>();
 
-        return result;
+        return envelope!;
     }
 
     public async Task DeleteToDoList(Guid toDoListId)

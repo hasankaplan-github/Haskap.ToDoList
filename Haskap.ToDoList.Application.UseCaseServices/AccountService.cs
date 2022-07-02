@@ -34,9 +34,9 @@ public class AccountService : UseCaseService, IAccountService
         _jwtProvider=jwtProvider;
     }
 
-    public async Task<LoginOutputDto> LoginAsync(LoginInputDto input)
+    public async Task<LoginOutputDto> LoginAsync(LoginInputDto loginInputDto)
     {
-        var user = _appDbContext.User.SingleOrDefault(x => x.UserName.Value == input.UserName && x.Password.Value == input.Password);
+        var user = _appDbContext.User.SingleOrDefault(x => x.UserName.Value == loginInputDto.UserName && x.Password.Value == loginInputDto.Password);
 
         if (user is null)
         {
