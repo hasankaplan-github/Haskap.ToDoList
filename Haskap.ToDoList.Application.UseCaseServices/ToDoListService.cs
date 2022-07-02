@@ -4,6 +4,7 @@ using Haskap.DddBase.Domain.Providers;
 using Haskap.DddBase.Utilities.Guids;
 using Haskap.ToDoList.Application.UseCaseServices.Contracts;
 using Haskap.ToDoList.Application.UseCaseServices.Dtos;
+using Haskap.ToDoList.Domain.Core;
 using Haskap.ToDoList.Domain.Core.ToDoListAggregate;
 using Haskap.ToDoList.Domain.Core.UserAggregate;
 using Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext;
@@ -45,7 +46,7 @@ public class ToDoListService : UseCaseService, IToDoListService
         var toDoList = await _appDbContext.ToDoList.FindAsync(toDoListId);
         if (toDoList.OwnerUserId != _ownerUserId)
         {
-            throw new Exception("You are not the owner of this list");
+            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
         }
 
         _appDbContext.ToDoList.Remove(toDoList);
@@ -57,7 +58,7 @@ public class ToDoListService : UseCaseService, IToDoListService
         var toDoList = await _appDbContext.ToDoList.FindAsync(toDoListId);
         if (toDoList.OwnerUserId != _ownerUserId)
         {
-            throw new Exception("You are not the owner of this list");
+            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
         }
 
         toDoList.SetName(toDoListInputDto.Name);
@@ -72,7 +73,7 @@ public class ToDoListService : UseCaseService, IToDoListService
             .SingleAsync();
         if (toDoList!.OwnerUserId != _ownerUserId)
         {
-            throw new Exception("You are not the owner of this list");
+            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
         }
 
         // foreach (var toDoItem in toDoList.ToDoItems)

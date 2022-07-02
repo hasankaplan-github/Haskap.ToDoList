@@ -14,10 +14,10 @@ public class BaseController : ControllerBase
         return base.Ok(Envelope.Ok(result));
     }
 
-    protected IActionResult Error(string? errorMessage, string? exceptionStackTrace, string? exceptionType)
-    {
-        return BadRequest(Envelope.Error(errorMessage, exceptionStackTrace, exceptionType));
-    }
+    //protected IActionResult Error(string? errorMessage, string? exceptionStackTrace, string? exceptionType)
+    //{
+    //    return BadRequest(Envelope.Error(errorMessage, exceptionStackTrace, exceptionType));
+    //}
 
     //protected IActionResult FromResult(Result result)
     //{

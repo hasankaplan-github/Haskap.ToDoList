@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Diagnostics;
 using System.Text.Json;
 using Haskap.ToDoList.Presentation.WebApi.Middlewares;
 using Haskap.ToDoList.Infrastructure.Providers;
+using Haskap.ToDoList.Domain.Core;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,13 +70,13 @@ app.UseExceptionHandler(exceptionHandlerApp =>
         var exceptionStackTrace = exception?.StackTrace;
         var errorEnvelope = Envelope.Error(exceptionMessage, exceptionStackTrace, exception?.GetType().ToString());
 
-        if (exception is UnauthorizedAccessException)
+        if (exception is GeneralException generalException)
         {
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.StatusCode = (int)generalException.HttpStatusCode;
         }
         else
         {
-            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            context.Response.StatusCode = StatusCodes.Status400BadRequest;
         }
 
         app.Logger.LogError($"{JsonSerializer.Serialize(errorEnvelope)}{Environment.NewLine}" +
@@ -110,7 +112,7 @@ app.Use(async (context, next) =>
 
     if (context.Response.StatusCode == StatusCodes.Status401Unauthorized)
     {
-        throw new UnauthorizedAccessException("Unauthorized");
+        throw new GeneralException("Unauthorized access.", HttpStatusCode.Unauthorized);
     }
 });
 
