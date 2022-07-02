@@ -1,3 +1,4 @@
+using Haskap.ToDoList.Ui.MvcWebUi;
 using Haskap.ToDoList.Ui.MvcWebUi.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.Net.Http.Headers;
@@ -14,7 +15,6 @@ builder.Services.AddHttpClient<ToDoListService>(httpClient =>
 });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
-
 
 var app = builder.Build();
 
@@ -49,20 +49,11 @@ app.UseExceptionHandler(appBuilder =>
 
         var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
         var exception = exceptionHandlerPathFeature?.Error;
-        if (exception is HttpRequestException httpRequestException)
+        if (exception is UnauthorizedAccessException)
         {
-            if (httpRequestException.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                //var controller = context.GetRouteValue("controller")?.ToString();
-                //var action = context.GetRouteValue("action")?.ToString();
-                var path = context.Request.Path.HasValue ? context.Request.Path.Value : string.Empty;
-                var queryString = context.Request.QueryString.HasValue ? context.Request.QueryString.Value : string.Empty;
-                context.Response.Redirect($"/Account/Login?returnUrl={path}{queryString}");
-            }
-            else
-            {
-                context.Response.Redirect("/Home/Error");
-            }
+            var path = context.Request.Path.HasValue ? context.Request.Path.Value : string.Empty;
+            var queryString = context.Request.QueryString.HasValue ? context.Request.QueryString.Value : string.Empty;
+            context.Response.Redirect($"/Account/Login?returnUrl={path}{queryString}");
         }
         else //if (!app.Environment.IsDevelopment())
         {

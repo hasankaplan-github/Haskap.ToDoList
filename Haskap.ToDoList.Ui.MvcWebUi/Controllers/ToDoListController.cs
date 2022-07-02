@@ -15,7 +15,7 @@ public class ToDoListController : Controller
 
     public async Task<IActionResult> List()
     {
-        var lists = await _toDoListService.GetToDoLists();
+        var lists = await _toDoListService.GetToDoLists<IEnumerable<ToDoListOutputDto>>();
         return View(lists);
     }
 

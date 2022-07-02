@@ -61,7 +61,22 @@
     <!-- AdminLTE App -->
     <script src="~/lib/AdminLte_3_2_0/dist/js/adminlte.min.js"></script>
     <script src="~/lib/sweetalert/dist/js/sweetalert2.all.min.js"></script>
-    
+
+    <script>
+        @if(Model!.HasError == true)
+        {
+            <text>
+            $(document).ready(function(){
+                Swal.fire(
+                    'Hata',
+                    '@Model.ExceptionMessage <br/> @Model.ExceptionStackTrace',
+                    'error'
+                );
+            });
+            </text>
+        }
+    </script>
+        
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

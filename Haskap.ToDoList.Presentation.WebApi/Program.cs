@@ -84,7 +84,7 @@ app.UseExceptionHandler(exceptionHandlerApp =>
         {
             errorEnvelope.ExceptionStackTrace = null;
         }
-        await context.Response.WriteAsync(JsonSerializer.Serialize(errorEnvelope));
+        await context.Response.WriteAsJsonAsync(errorEnvelope);
 
         //if (exceptionHandlerPathFeature?.Path == "/")
         //{
@@ -92,6 +92,8 @@ app.UseExceptionHandler(exceptionHandlerApp =>
         //}
     });
 });
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -101,6 +103,17 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.Use(async (context, next) =>
+{
+    await next();
+
+    if (context.Response.StatusCode == StatusCodes.Status401Unauthorized)
+    {
+        throw new UnauthorizedAccessException("Unauthorized");
+    }
+});
+
 
 app.UseAuthentication();
 app.UseAuthorization();

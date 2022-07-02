@@ -12,3 +12,8 @@ public class Envelope<T>
     {
     }
 }
+
+public class Envelope : Envelope<object>
+{
+
+}
