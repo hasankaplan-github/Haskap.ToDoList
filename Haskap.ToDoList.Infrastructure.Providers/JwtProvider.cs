@@ -1,4 +1,6 @@
-﻿using Haskap.ToDoList.Domain.Providers;
+﻿using Haskap.DddBase.Utilities.Guids;
+using Haskap.ToDoList.Domain.Core.UserAggregate;
+using Haskap.ToDoList.Domain.Providers;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,10 +19,21 @@ public class JwtProvider : IJwtProvider
         _jwtSettings=jwtSettingsOptions.Value;
     }
 
-    public string GenerateToken(IEnumerable<Claim> claims)
+    public string GenerateToken(User user)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
         var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var claims = new[] {
+                        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                        new Claim(JwtRegisteredClaimNames.Jti, GuidGenerator.CreateSimpleGuid().ToString()),
+                        new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                        new Claim(JwtRegisteredClaimNames.GivenName, user.Name.FirstName),
+                        new Claim(JwtRegisteredClaimNames.GivenName + "_2", user.Name.MiddleName ?? string.Empty),
+                        new Claim(JwtRegisteredClaimNames.FamilyName, user.Name.LastName),
+                        new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName.Value),
+                    };
+
         var token = new JwtSecurityToken(
             _jwtSettings.Issuer,
             _jwtSettings.Audience,

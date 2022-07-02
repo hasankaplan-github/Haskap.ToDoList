@@ -43,17 +43,7 @@ public class AccountService : UseCaseService, IAccountService
             throw new Exception("User not found");
         }
 
-        var claims = new[] {
-                        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                        new Claim(JwtRegisteredClaimNames.Jti, GuidGenerator.CreateSimpleGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim(JwtRegisteredClaimNames.GivenName, user.Name.FirstName),
-                        new Claim(JwtRegisteredClaimNames.GivenName + "_2", user.Name.MiddleName ?? string.Empty),
-                        new Claim(JwtRegisteredClaimNames.FamilyName, user.Name.LastName),
-                        new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName.Value),
-                    };
-
-        var token = _jwtProvider.GenerateToken(claims);
+        var token = _jwtProvider.GenerateToken(user);
 
         return new LoginOutputDto
         {
