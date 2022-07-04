@@ -1,5 +1,7 @@
 ﻿using Haskap.ToDoList.Application.UseCaseServices.Dtos;
+using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
 using Haskap.ToDoList.Ui.MvcWebUi.HttpClients;
+using Haskap.ToDoList.Ui.MvcWebUi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers;
@@ -13,9 +15,18 @@ public class ToDoListController : Controller
         _toDoListHttpClient=toDoListHttpClient;
     }
 
-    public async Task<IActionResult> List()
+    public async Task<IActionResult> List(int pageSize = 1, int currentPageIndex = 1)
     {
-        var lists = await _toDoListHttpClient.GetToDoLists<IEnumerable<ToDoListOutputDto>>();
+        JqueryDataTableParam jqueryDataTableParam = new()
+        {
+            Length = pageSize,
+            Start = (currentPageIndex - 1) * pageSize
+        };
+        var lists = await _toDoListHttpClient.GetToDoLists(jqueryDataTableParam);
+        
+        var pagination = new Pagination(pageSize, currentPageIndex, lists.Result?.recordsFiltered ?? 0);
+        ViewBag.Pagination = pagination;
+
         return View(lists);
     }
 

@@ -1,4 +1,5 @@
 ﻿using Haskap.ToDoList.Application.UseCaseServices.Dtos;
+using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
 using Microsoft.Net.Http.Headers;
 using System.Net;
 using System.Net.Http.Headers;
@@ -42,11 +43,16 @@ public class ToDoListHttpClient
 
     #region ToDoList
 
-    public async Task<Envelope<T>> GetToDoLists<T>()
+    public async Task<Envelope<JqueryDataTableResult>> GetToDoLists(JqueryDataTableParam jqueryDataTableParam)
     {
         //var result = await _httpClient.GetFromJsonAsync<Envelope<IEnumerable<ToDoListOutputDto>>>("/ToDoList/List");
-        var httpResponseMessage = await _httpClient.GetAsync("/ToDoList/List");
-        var envelope = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope<T>>();
+        var httpResponseMessage = await _httpClient.PostAsync("/ToDoList/List", new StringContent(JsonSerializer.Serialize(jqueryDataTableParam), Encoding.UTF8, "application/json"));
+        var envelope = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope<JqueryDataTableResult>>();
+
+        if (envelope!.HasError ==false)
+        {
+            envelope.Result!.data = JsonSerializer.Deserialize<IEnumerable<ToDoListOutputDto>>(envelope.Result!.data, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
 
         return envelope!;
     }

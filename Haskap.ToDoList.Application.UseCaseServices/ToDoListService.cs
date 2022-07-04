@@ -4,6 +4,7 @@ using Haskap.DddBase.Domain.Providers;
 using Haskap.DddBase.Utilities.Guids;
 using Haskap.ToDoList.Application.UseCaseServices.Contracts;
 using Haskap.ToDoList.Application.UseCaseServices.Dtos;
+using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
 using Haskap.ToDoList.Domain.Core;
 using Haskap.ToDoList.Domain.Core.ToDoListAggregate;
 using Haskap.ToDoList.Domain.Core.UserAggregate;
@@ -85,16 +86,34 @@ public class ToDoListService : UseCaseService, IToDoListService
         await _appDbContext.SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<ToDoListOutputDto>> GetToDoLists()
+    public async Task<JqueryDataTableResult> GetToDoLists(JqueryDataTableParam jqueryDataTableParam)
     {
-        var toDoLists = await _appDbContext.ToDoList
+        var searchBy = jqueryDataTableParam.Search?.Value;
+        var skip = jqueryDataTableParam.Start;
+        var take = jqueryDataTableParam.Length;
+
+        var toDoListsQuery = _appDbContext.ToDoList
+            .Where(x => x.OwnerUserId == _ownerUserId);
+
+        var totalCount = await toDoListsQuery.CountAsync();
+        var filteredCount = totalCount;
+
+        var toDoLists = await toDoListsQuery
             .Include(x => x.ToDoItems)
-            .Where(x => x.OwnerUserId == _ownerUserId)
+            .Skip(skip)
+            .Take(take)
             .ToListAsync();
 
         var outputDto = _mapper.Map<IEnumerable<ToDoListOutputDto>>(toDoLists);
 
-        return outputDto;
+        return new JqueryDataTableResult
+        {
+            // this is what datatables wants sending back
+            draw = jqueryDataTableParam.Draw,
+            recordsTotal = totalCount,
+            recordsFiltered = filteredCount,
+            data = outputDto
+        };
     }
 
     

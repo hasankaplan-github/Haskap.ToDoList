@@ -70,14 +70,20 @@ app.UseExceptionHandler(exceptionHandlerApp =>
         var exceptionStackTrace = exception?.StackTrace;
         var errorEnvelope = Envelope.Error(exceptionMessage, exceptionStackTrace, exception?.GetType().ToString());
 
-        if (exception is GeneralException generalException)
+        context.Response.StatusCode = exception switch
         {
-            context.Response.StatusCode = (int)generalException.HttpStatusCode;
-        }
-        else
-        {
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-        }
+            GeneralException generalException => (int)generalException.HttpStatusCode,
+            _ => StatusCodes.Status400BadRequest
+        };
+
+        //if (exception is GeneralException generalException)
+        //{
+        //    context.Response.StatusCode = (int)generalException.HttpStatusCode;
+        //}
+        //else
+        //{
+        //    context.Response.StatusCode = StatusCodes.Status400BadRequest;
+        //}
 
         app.Logger.LogError($"{JsonSerializer.Serialize(errorEnvelope)}{Environment.NewLine}" +
             $"=====================================================================================================================");

@@ -1,5 +1,6 @@
 ﻿using Haskap.ToDoList.Application.UseCaseServices.Contracts;
 using Haskap.ToDoList.Application.UseCaseServices.Dtos;
+using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
@@ -43,10 +44,10 @@ public class ToDoListController : BaseController
     }
 
     [Authorize]
-    [HttpGet("List")]
-    public async Task<IActionResult> GetToDoLists()
+    [HttpPost("List")]
+    public async Task<IActionResult> GetToDoLists(JqueryDataTableParam jqueryDataTableParam)
     {
-        var outputDto = await _toDoListService.GetToDoLists();
+        var outputDto = await _toDoListService.GetToDoLists(jqueryDataTableParam);
         return Ok(outputDto);
     }
 

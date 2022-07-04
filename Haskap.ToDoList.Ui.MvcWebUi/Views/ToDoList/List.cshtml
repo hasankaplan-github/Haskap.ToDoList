@@ -1,11 +1,15 @@
 ﻿@using Haskap.ToDoList.Application.UseCaseServices.Dtos
+@using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable
+@using System.Text.Json;
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@model Envelope<IEnumerable<ToDoListOutputDto>>
+@model Envelope<JqueryDataTableResult>
 
 @{
+    Pagination pagination = ViewBag.Pagination;
 }
 
 <div class="row">
@@ -24,20 +28,45 @@
                     <button class="btn btn-primary float-right" data-toggle="modal" data-target="#newToDoListModal">Yeni Liste Ekle</button>
                 </h3>
                 @*<h5 class="widget-user-desc">Lead Developer</h5>*@
+
+                <br />
+
+                <div class="card-tools float-right">
+                    <ul class="pagination pagination-sm">
+                        @if (pagination.HasPreviousPage)
+                        {
+                            <li class="page-item"><a asp-action="List" asp-route-currentPageIndex="@(pagination.CurrentPageIndex - 1)" class="page-link">&laquo;</a></li>    
+                        }
+
+                        @{
+                            var firstIndex = pagination.CurrentPageIndex == pagination.PageCount ? pagination.GetFirstIndex(2) : pagination.GetFirstIndex(1);
+                            var lastIndex = pagination.CurrentPageIndex == 1 ? pagination.GetLastIndex(2) : pagination.GetLastIndex(1);
+                        }
+                        @for (int i = firstIndex; i <= lastIndex; i++)
+                        {
+                            <li class="page-item"><a asp-action="List" asp-route-currentPageIndex="@i" class="page-link">@i</a></li>
+                        }
+                        
+                        @if (pagination.HasNextPage)
+                        {
+                            <li class="page-item"><a asp-action="List" asp-route-currentPageIndex="@(pagination.CurrentPageIndex + 1)" class="page-link">&raquo;</a></li>    
+                        }
+                    </ul>
+                </div>
             </div>
             
             <div class="card-footer p-0">
                 <ul class="nav flex-column">
                     @if (Model.HasError == false)
                     {
-                        foreach(var toDoListOutputDto in Model.Result!)
+                        foreach(var toDoListOutputDto in Model.Result!.data)
                         {
                             <li class="nav-item">
                                 <a asp-controller="ToDoItem" asp-action="List" asp-route-toDoListId="@toDoListOutputDto.Id" class="nav-link">
                                     @toDoListOutputDto.Name <span class="float-right badge bg-primary">@toDoListOutputDto.ItemCount</span>
                                 </a>
                             </li>
-                        }    
+                        }   
                     }
                 </ul>
             </div>
