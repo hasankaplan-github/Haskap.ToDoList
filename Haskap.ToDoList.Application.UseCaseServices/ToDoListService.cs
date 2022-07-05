@@ -98,6 +98,16 @@ public class ToDoListService : UseCaseService, IToDoListService
         var totalCount = await toDoListsQuery.CountAsync();
         var filteredCount = totalCount;
 
+        if (skip < 0)
+        {
+            skip = totalCount + 1;
+        }
+
+        if (take < 0)
+        {
+            take = 0;
+        }
+
         var toDoLists = await toDoListsQuery
             .Include(x => x.ToDoItems)
             .Skip(skip)

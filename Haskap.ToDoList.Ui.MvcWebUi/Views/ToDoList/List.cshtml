@@ -1,6 +1,5 @@
 ﻿@using Haskap.ToDoList.Application.UseCaseServices.Dtos
 @using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable
-@using System.Text.Json;
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -35,21 +34,31 @@
                     <ul class="pagination pagination-sm">
                         @if (pagination.HasPreviousPage)
                         {
-                            <li class="page-item"><a asp-action="List" asp-route-currentPageIndex="@(pagination.CurrentPageIndex - 1)" class="page-link">&laquo;</a></li>    
+                            <li class="page-item"><a asp-action="List" asp-route-pageSize="@pagination.PageSize" asp-route-currentPageIndex="@(pagination.CurrentPageIndex - 1)" class="page-link">&laquo;</a></li>    
                         }
 
                         @{
-                            var firstIndex = pagination.CurrentPageIndex == pagination.PageCount ? pagination.GetFirstIndex(2) : pagination.GetFirstIndex(1);
-                            var lastIndex = pagination.CurrentPageIndex == 1 ? pagination.GetLastIndex(2) : pagination.GetLastIndex(1);
+                            var visiblePageIndexCount = 3; // odd numbers results well
+                            var firstPageIndex = pagination.GetFirstPageIndex(visiblePageIndexCount);
+                            var lastPageIndex = pagination.GetLastPageIndex(visiblePageIndexCount);
                         }
-                        @for (int i = firstIndex; i <= lastIndex; i++)
+                        @for (int i = firstPageIndex; i <= lastPageIndex; i++)
                         {
-                            <li class="page-item"><a asp-action="List" asp-route-currentPageIndex="@i" class="page-link">@i</a></li>
+                            <li class="page-item">
+                                @if (i == pagination.CurrentPageIndex)
+                                {
+                                    <span class="page-link text-muted bg-info">@i</span>
+                                }
+                                else
+                                {
+                                    <a asp-action="List" asp-route-pageSize="@pagination.PageSize" asp-route-currentPageIndex="@i" class="page-link">@i</a>
+                                }
+                            </li>
                         }
                         
                         @if (pagination.HasNextPage)
                         {
-                            <li class="page-item"><a asp-action="List" asp-route-currentPageIndex="@(pagination.CurrentPageIndex + 1)" class="page-link">&raquo;</a></li>    
+                            <li class="page-item"><a asp-action="List" asp-route-pageSize="@pagination.PageSize" asp-route-currentPageIndex="@(pagination.CurrentPageIndex + 1)" class="page-link">&raquo;</a></li>    
                         }
                     </ul>
                 </div>

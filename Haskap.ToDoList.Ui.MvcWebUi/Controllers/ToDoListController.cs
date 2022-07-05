@@ -15,7 +15,7 @@ public class ToDoListController : Controller
         _toDoListHttpClient=toDoListHttpClient;
     }
 
-    public async Task<IActionResult> List(int pageSize = 1, int currentPageIndex = 1)
+    public async Task<IActionResult> List(int pageSize = 2, int currentPageIndex = 1)
     {
         JqueryDataTableParam jqueryDataTableParam = new()
         {
