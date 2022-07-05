@@ -47,14 +47,14 @@ public class ToDoListHttpClient
     {
         //var result = await _httpClient.GetFromJsonAsync<Envelope<IEnumerable<ToDoListOutputDto>>>("/ToDoList/List");
         var httpResponseMessage = await _httpClient.PostAsync("/ToDoList/List", new StringContent(JsonSerializer.Serialize(jqueryDataTableParam), Encoding.UTF8, "application/json"));
-        var envelope = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope<JqueryDataTableResult>>();
+        var envelope = (await httpResponseMessage.Content.ReadFromJsonAsync<Envelope<JqueryDataTableResult>>())!;
 
-        if (envelope!.HasError ==false)
+        if (envelope.HasError ==false)
         {
             envelope.Result!.data = JsonSerializer.Deserialize<IEnumerable<ToDoListOutputDto>>(envelope.Result!.data, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
-        return envelope!;
+        return envelope;
     }
 
     public async Task<Envelope> AddToDoList(ToDoListInputDto toDoListInputDto)

@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,7 +48,7 @@ public class ToDoListService : UseCaseService, IToDoListService
         var toDoList = await _appDbContext.ToDoList.FindAsync(toDoListId);
         if (toDoList.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new GeneralException("You are not the owner of this list", HttpStatusCode.BadRequest);
         }
 
         _appDbContext.ToDoList.Remove(toDoList);
@@ -59,7 +60,7 @@ public class ToDoListService : UseCaseService, IToDoListService
         var toDoList = await _appDbContext.ToDoList.FindAsync(toDoListId);
         if (toDoList.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new GeneralException("You are not the owner of this list", HttpStatusCode.BadRequest);
         }
 
         toDoList.SetName(toDoListInputDto.Name);
@@ -74,13 +75,9 @@ public class ToDoListService : UseCaseService, IToDoListService
             .SingleAsync();
         if (toDoList!.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new GeneralException("You are not the owner of this list", HttpStatusCode.BadRequest);
         }
-
-        // foreach (var toDoItem in toDoList.ToDoItems)
-        // {
-        //     toDoItem.MarkAsCompleted();
-        // }
+        
         toDoList.MarkAsCompleted();
         
         await _appDbContext.SaveChangesAsync();
@@ -98,23 +95,17 @@ public class ToDoListService : UseCaseService, IToDoListService
         var totalCount = await toDoListsQuery.CountAsync();
         var filteredCount = totalCount;
 
-        if (skip < 0)
+        var outputDto = new List<ToDoListOutputDto>();
+        if (skip > -1 && take > 0)
         {
-            skip = totalCount + 1;
-        }
-
-        if (take < 0)
-        {
-            take = 0;
-        }
-
-        var toDoLists = await toDoListsQuery
+            var toDoLists = await toDoListsQuery
             .Include(x => x.ToDoItems)
             .Skip(skip)
             .Take(take)
             .ToListAsync();
 
-        var outputDto = _mapper.Map<IEnumerable<ToDoListOutputDto>>(toDoLists);
+            outputDto = _mapper.Map<List<ToDoListOutputDto>>(toDoLists);
+        }
 
         return new JqueryDataTableResult
         {
@@ -125,6 +116,4 @@ public class ToDoListService : UseCaseService, IToDoListService
             data = outputDto
         };
     }
-
-    
 }
