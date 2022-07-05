@@ -59,31 +59,17 @@ app.UseExceptionHandler(exceptionHandlerApp =>
 {
     exceptionHandlerApp.Run(async context =>
     {
-        // using static System.Net.Mime.MediaTypeNames;
-        context.Response.ContentType = Text.Plain;
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>()!;
+        var exception = exceptionHandlerPathFeature.Error;
 
-        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
-
-        var exception = exceptionHandlerPathFeature?.Error;
-
-        var exceptionMessage = exception?.Message /* is not null ? stringLocalizer[errorMessage] : null */ ;
-        var exceptionStackTrace = exception?.StackTrace;
-        var errorEnvelope = Envelope.Error(exceptionMessage, exceptionStackTrace, exception?.GetType().ToString());
-
-        context.Response.StatusCode = exception switch
+        var exceptionMessage = exception.Message /* is not null ? stringLocalizer[errorMessage] : null */ ;
+        var exceptionStackTrace = exception.StackTrace;
+        var httpStatusCode = exception switch
         {
-            GeneralException generalException => (int)generalException.HttpStatusCode,
-            _ => StatusCodes.Status400BadRequest
+            GeneralException generalException => generalException.HttpStatusCode,
+            _ => HttpStatusCode.BadRequest
         };
-
-        //if (exception is GeneralException generalException)
-        //{
-        //    context.Response.StatusCode = (int)generalException.HttpStatusCode;
-        //}
-        //else
-        //{
-        //    context.Response.StatusCode = StatusCodes.Status400BadRequest;
-        //}
+        var errorEnvelope = Envelope.Error(exceptionMessage, exceptionStackTrace, exception.GetType().ToString(), httpStatusCode);
 
         app.Logger.LogError($"{JsonSerializer.Serialize(errorEnvelope)}{Environment.NewLine}" +
             $"=====================================================================================================================");
@@ -92,12 +78,11 @@ app.UseExceptionHandler(exceptionHandlerApp =>
         {
             errorEnvelope.ExceptionStackTrace = null;
         }
-        await context.Response.WriteAsJsonAsync(errorEnvelope);
 
-        //if (exceptionHandlerPathFeature?.Path == "/")
-        //{
-        //    await context.Response.WriteAsync(" Page: Home.");
-        //}
+        // using static System.Net.Mime.MediaTypeNames;
+        context.Response.ContentType = Text.Plain;
+        context.Response.StatusCode = (int)httpStatusCode;
+        await context.Response.WriteAsJsonAsync(errorEnvelope);
     });
 });
 
