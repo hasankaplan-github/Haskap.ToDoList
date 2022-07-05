@@ -76,7 +76,7 @@ app.UseExceptionHandler(exceptionHandlerApp =>
 
         if (app.Environment.IsDevelopment() == false)
         {
-            errorEnvelope.ExceptionStackTrace = null;
+            errorEnvelope.SetExceptionStackTraceToNull();
         }
 
         // using static System.Net.Mime.MediaTypeNames;

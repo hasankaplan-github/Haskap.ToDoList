@@ -3,13 +3,13 @@
 namespace Haskap.ToDoList.Presentation.WebApi;
 public class Envelope<T>
 {
-    public T? Result { get; set; }
-    public string? ExceptionMessage { get; set; }
-    public string? ExceptionStackTrace { get; set; }
+    public T? Result { get; }
+    public string? ExceptionMessage { get; }
+    public string? ExceptionStackTrace { get; protected set; }
     public DateTime TimeGenerated { get; }
     public bool HasError => HttpStatusCode != HttpStatusCode.OK; //!string.IsNullOrWhiteSpace(ExceptionMessage);
-    public string? ExceptionType { get; set; }
-    public HttpStatusCode HttpStatusCode { get; set; }
+    public string? ExceptionType { get; }
+    public HttpStatusCode HttpStatusCode { get; }
 
     public Envelope()
     {
@@ -46,5 +46,10 @@ public sealed class Envelope : Envelope<object>
     public static Envelope Error(string? exceptionMessage, string? exceptionStackTrace, string? exceptionType, HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError)
     {
         return new Envelope(exceptionMessage, exceptionStackTrace, exceptionType, httpStatusCode);
+    }
+
+    public void SetExceptionStackTraceToNull()
+    {
+        ExceptionStackTrace = null;
     }
 }
