@@ -1,4 +1,4 @@
-﻿using Haskap.ToDoList.Application.UseCaseServices.Dtos;
+﻿using Haskap.ToDoList.Application.Dtos;
 using Haskap.ToDoList.Ui.MvcWebUi.HttpClients;
 using Microsoft.AspNetCore.Mvc;
 

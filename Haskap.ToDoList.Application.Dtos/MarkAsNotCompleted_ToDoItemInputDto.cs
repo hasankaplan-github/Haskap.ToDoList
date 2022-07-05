@@ -1,4 +1,4 @@
-﻿namespace Haskap.ToDoList.Application.UseCaseServices.Dtos;
+﻿namespace Haskap.ToDoList.Application.Dtos;
 
 public class MarkAsNotCompleted_ToDoItemInputDto
 {

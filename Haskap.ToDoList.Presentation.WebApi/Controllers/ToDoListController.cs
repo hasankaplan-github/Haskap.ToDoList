@@ -1,6 +1,6 @@
-﻿using Haskap.ToDoList.Application.UseCaseServices.Contracts;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
+﻿using Haskap.ToDoList.Application.Contracts;
+using Haskap.ToDoList.Application.Dtos;
+using Haskap.ToDoList.Application.Dtos.DataTable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;

@@ -1,7 +1,7 @@
 ﻿using Haskap.DddBase.Application.UseCaseServices;
 using Haskap.DddBase.Utilities.Guids;
-using Haskap.ToDoList.Application.UseCaseServices.Contracts;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos;
+using Haskap.ToDoList.Application.Contracts;
+using Haskap.ToDoList.Application.Dtos;
 using Haskap.ToDoList.Domain.Core;
 using Haskap.ToDoList.Domain.Core.UserAggregate;
 using Haskap.ToDoList.Domain.Providers;

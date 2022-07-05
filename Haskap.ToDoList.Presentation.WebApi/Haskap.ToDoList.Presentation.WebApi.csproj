@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Haskap.ToDoList.Application.Contracts\Haskap.ToDoList.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Haskap.ToDoList.Application.Dtos\Haskap.ToDoList.Application.Dtos.csproj" />
     <ProjectReference Include="..\Haskap.ToDoList.Application.EventHandlers\Haskap.ToDoList.Application.EventHandlers.csproj" />
-    <ProjectReference Include="..\Haskap.ToDoList.Application.UseCaseServices.Contracts\Haskap.ToDoList.Application.UseCaseServices.Contracts.csproj" />
-    <ProjectReference Include="..\Haskap.ToDoList.Application.UseCaseServices.Dtos\Haskap.ToDoList.Application.UseCaseServices.Dtos.csproj" />
     <ProjectReference Include="..\Haskap.ToDoList.Application.UseCaseServices\Haskap.ToDoList.Application.UseCaseServices.csproj" />
     <ProjectReference Include="..\Haskap.ToDoList.Domain.Core.Shared\Haskap.ToDoList.Domain.Core.Shared.csproj" />
     <ProjectReference Include="..\Haskap.ToDoList.Domain.Core\Haskap.ToDoList.Domain.Core.csproj" />
@@ -32,11 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Haskap.DddBase.Application.Contracts">
+      <HintPath>..\References\Haskap.DddBase.Application.Contracts.dll</HintPath>
+    </Reference>
     <Reference Include="Haskap.DddBase.Application.UseCaseServices">
       <HintPath>..\References\Haskap.DddBase.Application.UseCaseServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Haskap.DddBase.Application.UseCaseServices.Contracts">
-      <HintPath>..\References\Haskap.DddBase.Application.UseCaseServices.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Haskap.DddBase.Domain.Core">
       <HintPath>..\References\Haskap.DddBase.Domain.Core.dll</HintPath>

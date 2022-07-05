@@ -1,5 +1,5 @@
-﻿using Haskap.ToDoList.Application.UseCaseServices.Dtos;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
+﻿using Haskap.ToDoList.Application.Dtos;
+using Haskap.ToDoList.Application.Dtos.DataTable;
 using Microsoft.Net.Http.Headers;
 using System.Net;
 using System.Net.Http.Headers;

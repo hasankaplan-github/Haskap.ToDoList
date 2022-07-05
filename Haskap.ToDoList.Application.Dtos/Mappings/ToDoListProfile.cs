@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Haskap.ToDoList.Application.UseCaseServices.Dtos.Mappings
+namespace Haskap.ToDoList.Application.Dtos.Mappings
 {
     public class ToDoListProfile : Profile
     {

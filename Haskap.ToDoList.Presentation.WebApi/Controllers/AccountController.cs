@@ -1,5 +1,5 @@
-﻿using Haskap.ToDoList.Application.UseCaseServices.Contracts;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos;
+﻿using Haskap.ToDoList.Application.Contracts;
+using Haskap.ToDoList.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Haskap.ToDoList.Presentation.WebApi.Controllers;

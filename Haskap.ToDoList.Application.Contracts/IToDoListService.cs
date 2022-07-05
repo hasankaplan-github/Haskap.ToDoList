@@ -1,8 +1,8 @@
-﻿using Haskap.DddBase.Application.UseCaseServices.Contracts;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
+﻿using Haskap.DddBase.Application.Contracts;
+using Haskap.ToDoList.Application.Dtos;
+using Haskap.ToDoList.Application.Dtos.DataTable;
 
-namespace Haskap.ToDoList.Application.UseCaseServices.Contracts;
+namespace Haskap.ToDoList.Application.Contracts;
 
 public interface IToDoListService : IUseCaseService
 {

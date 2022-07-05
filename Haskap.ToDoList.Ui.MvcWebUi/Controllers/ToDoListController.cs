@@ -1,5 +1,5 @@
-﻿using Haskap.ToDoList.Application.UseCaseServices.Dtos;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
+﻿using Haskap.ToDoList.Application.Dtos;
+using Haskap.ToDoList.Application.Dtos.DataTable;
 using Haskap.ToDoList.Ui.MvcWebUi.HttpClients;
 using Haskap.ToDoList.Ui.MvcWebUi.Models;
 using Microsoft.AspNetCore.Mvc;

@@ -1,6 +1,6 @@
 ﻿using Haskap.DddBase.Domain.Providers;
 using Haskap.ToDoList.Application.UseCaseServices;
-using Haskap.ToDoList.Application.UseCaseServices.Contracts;
+using Haskap.ToDoList.Application.Contracts;
 using Haskap.ToDoList.Domain.Core.UserAggregate;
 using Haskap.ToDoList.Domain.Providers;
 using Haskap.ToDoList.Infrastructure.Providers;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Haskap.ToDoList.Application.UseCaseServices.Dtos.DataTable;
+namespace Haskap.ToDoList.Application.Dtos.DataTable;
 
 public class ColumnParam
 {

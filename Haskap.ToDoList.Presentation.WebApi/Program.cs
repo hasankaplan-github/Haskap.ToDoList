@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Haskap.ToDoList.Application.UseCaseServices.Dtos.Mappings;
+using Haskap.ToDoList.Application.Dtos.Mappings;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Text.Json;
