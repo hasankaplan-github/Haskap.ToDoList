@@ -6,6 +6,7 @@ using Haskap.ToDoList.Application.Contracts;
 using Haskap.ToDoList.Application.Dtos;
 using Haskap.ToDoList.Domain.Core;
 using Haskap.ToDoList.Domain.Core.ToDoListAggregate;
+using Haskap.ToDoList.Domain.Core.ToDoListAggregate.Exceptions;
 using Haskap.ToDoList.Domain.Core.UserAggregate;
 using Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +36,7 @@ public class ToDoItemService : UseCaseService, IToDoItemService
         var toDoList = await _appDbContext.ToDoList.FindAsync(toDoItemInputDto.OwnerToDoListId);
         if (toDoList.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new YouAreNotOwnerOfThisListException();
         }
 
         var toDoItem = new ToDoItem(
@@ -58,7 +59,7 @@ public class ToDoItemService : UseCaseService, IToDoItemService
 
         if (toDoList!.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new YouAreNotOwnerOfThisListException();
         }
 
         var toBeRemoved = toDoList.ToDoItems.Single(x => x.Id == toDoItemId);
@@ -76,7 +77,7 @@ public class ToDoItemService : UseCaseService, IToDoItemService
 
         if (toDoList!.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new YouAreNotOwnerOfThisListException();
         }
 
         var outputDto = _mapper.Map<IEnumerable<ToDoItemOutputDto>>(toDoList.ToDoItems);
@@ -92,7 +93,7 @@ public class ToDoItemService : UseCaseService, IToDoItemService
             .SingleAsync();
         if (toDoList!.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new YouAreNotOwnerOfThisListException();
         }
 
         var toDoItem = toDoList.ToDoItems.Single(x => x.Id == toDoItemInputDto.ToDoItemId);
@@ -109,7 +110,7 @@ public class ToDoItemService : UseCaseService, IToDoItemService
             .SingleAsync();
         if (toDoList!.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new YouAreNotOwnerOfThisListException();
         }
 
         var toDoItem = toDoList.ToDoItems.Single(x => x.Id == toDoItemInputDto.ToDoItemId);
@@ -126,7 +127,7 @@ public class ToDoItemService : UseCaseService, IToDoItemService
             .SingleAsync();
         if (toDoList.OwnerUserId != _ownerUserId)
         {
-            throw new GeneralException("You are not the owner of this list", System.Net.HttpStatusCode.BadRequest);
+            throw new YouAreNotOwnerOfThisListException();
         }
 
         var toDoItem = toDoList.ToDoItems.Single(x => x.Id == toDoItemId);

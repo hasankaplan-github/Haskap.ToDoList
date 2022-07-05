@@ -103,7 +103,7 @@ app.Use(async (context, next) =>
 
     if (context.Response.StatusCode == StatusCodes.Status401Unauthorized)
     {
-        throw new GeneralException("Unauthorized access.", HttpStatusCode.Unauthorized);
+        throw new UnauthorizedAccessException();
     }
 });
 

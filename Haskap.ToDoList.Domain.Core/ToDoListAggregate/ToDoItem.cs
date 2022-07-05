@@ -15,13 +15,7 @@ public class ToDoItem : Entity
     public DateTime? DueDate { get; set; }
     public bool IsCompleted { get; private set; }
     public Guid OwnerToDoListId { get; private set; }
-    public bool IsOverDue 
-    {
-        get 
-        {
-            return DueDate.HasValue && DueDate.Value > DateTime.Now;
-        }
-    }
+    public bool IsOverDue => DueDate.HasValue && DueDate.Value > DateTime.Now;
     public DateTime DateAdded { get; private set; }
 
 

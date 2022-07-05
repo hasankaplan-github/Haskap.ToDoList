@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Haskap.ToDoList.Domain.Core;
-public class GeneralException : Exception
+public abstract class GeneralException : Exception
 {
     public GeneralException(HttpStatusCode httpStatusCode = HttpStatusCode.BadRequest)
     {

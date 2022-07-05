@@ -4,11 +4,13 @@ using Haskap.ToDoList.Application.Contracts;
 using Haskap.ToDoList.Application.Dtos;
 using Haskap.ToDoList.Domain.Core;
 using Haskap.ToDoList.Domain.Core.UserAggregate;
+using Haskap.ToDoList.Domain.Core.UserAggregate.Exceptions;
 using Haskap.ToDoList.Domain.Providers;
 using Haskap.ToDoList.Infrastructure.Data.ToDoListDbContext;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 
@@ -41,7 +43,7 @@ public class AccountService : UseCaseService, IAccountService
 
         if (user is null)
         {
-            throw new GeneralException("User not found", System.Net.HttpStatusCode.NotFound);
+            throw new UserNotFoundException();
         }
 
         var token = _jwtProvider.GenerateToken(user);

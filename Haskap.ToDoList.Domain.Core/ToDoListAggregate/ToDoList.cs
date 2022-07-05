@@ -15,13 +15,7 @@ public class ToDoList : AggregateRoot
     private List<ToDoItem> _toDoItems;
     public IReadOnlyCollection<ToDoItem> ToDoItems => _toDoItems.AsReadOnly();
     public Guid OwnerUserId { get; private set; }
-    public bool IsCompleted 
-    { 
-        get 
-        {
-            return _toDoItems.All(x => x.IsCompleted);
-        } 
-    }
+    public bool IsCompleted => _toDoItems.All(x => x.IsCompleted);
 
 
     private ToDoList()
