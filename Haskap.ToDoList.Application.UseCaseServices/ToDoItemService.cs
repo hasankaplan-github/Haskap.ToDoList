@@ -133,11 +133,11 @@ public class ToDoItemService : UseCaseService, IToDoItemService
         var toDoItem = toDoList.ToDoItems.Single(x => x.Id == toDoItemId);
         toDoItem.SetContent(toDoItemInputDto.Content);
         toDoItem.DueDate = toDoItemInputDto.DueDate;
-        if (toDoItemInputDto.IsCompleted && toDoItem.IsCompleted == false)
+        if (toDoItemInputDto.IsCompleted)
         {
             toDoItem.MarkAsCompleted();
         }
-        else if (!toDoItemInputDto.IsCompleted && toDoItem.IsCompleted == true)
+        else
         {
             toDoItem.MarkAsNotCompleted();
         }

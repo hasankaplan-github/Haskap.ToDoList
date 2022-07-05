@@ -42,11 +42,19 @@ public class ToDoItem : Entity
 
     public void MarkAsCompleted()
     {
-        IsCompleted = true;
+        if (IsCompleted == false)
+        {
+            IsCompleted = true;
+            // MediatorWrapper.Publish(new ToDoItemMarkedAsCompletedDomainEvent()).GetAwaiter().GetResult();
+        }
     }
 
     public void MarkAsNotCompleted()
     {
-        IsCompleted = false;
+        if (IsCompleted == true)
+        {
+            IsCompleted = false;
+            // MediatorWrapper.Publish(new ToDoItemMarkedAsNotCompletedDomainEvent()).GetAwaiter().GetResult();            
+        }
     }
 }
