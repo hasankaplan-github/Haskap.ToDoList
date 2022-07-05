@@ -1,4 +1,6 @@
-﻿namespace Haskap.ToDoList.Ui.MvcWebUi;
+﻿using System.Net;
+
+namespace Haskap.ToDoList.Ui.MvcWebUi;
 public class Envelope<T>
 {
     public T? Result { get; set; }
@@ -7,6 +9,7 @@ public class Envelope<T>
     public DateTime TimeGenerated { get; set; }
     public bool HasError { get; set; }
     public string? ExceptionType { get; set; }
+    public HttpStatusCode HttpStatusCode { get; set; }
 
     public Envelope()
     {
