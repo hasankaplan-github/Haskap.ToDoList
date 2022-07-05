@@ -37,8 +37,7 @@ namespace Haskap.ToDoList.Ui.MvcWebUi.Controllers
                 cookieOptions.Expires = DateTime.Now.AddHours(1);
             Response.Cookies.Append("jwt", envelope.Result!.Token, cookieOptions);
             
-            loginInputDto.ReturnUrl = string.IsNullOrEmpty(loginInputDto.ReturnUrl) ? "/ToDoList/List" : loginInputDto.ReturnUrl;
-            return LocalRedirect(loginInputDto.ReturnUrl);
+            return LocalRedirect(string.IsNullOrWhiteSpace(loginInputDto.ReturnUrl) ? "/ToDoList/List" : loginInputDto.ReturnUrl);
         }
     }
 }

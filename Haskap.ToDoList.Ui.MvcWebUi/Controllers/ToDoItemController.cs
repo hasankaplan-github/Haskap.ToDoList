@@ -23,14 +23,14 @@ public class ToDoItemController : Controller
     [HttpPut]
     public async Task<JsonResult> MarkAsCompleted(MarkAsCompleted_ToDoItemInputDto toDoItemInputDto)
     {
-        await _toDoListHttpClient.MarkAsCompleted(toDoItemInputDto);
-        return Json(new { Success = true });
+        var envelope = (await _toDoListHttpClient.MarkAsCompleted(toDoItemInputDto))!;
+        return Json(envelope);
     }
 
     [HttpPut]
     public async Task<JsonResult> MarkAsNotCompleted(MarkAsNotCompleted_ToDoItemInputDto toDoItemInputDto)
     {
-        await _toDoListHttpClient.MarkAsNotCompleted(toDoItemInputDto);
-        return Json(new { Success = true });
+        var envelope = (await _toDoListHttpClient.MarkAsNotCompleted(toDoItemInputDto))!;
+        return Json(envelope);
     }
 }

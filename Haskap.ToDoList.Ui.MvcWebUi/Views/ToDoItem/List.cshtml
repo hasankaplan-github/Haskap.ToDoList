@@ -77,19 +77,19 @@
         }
 
     $('input[type=checkbox]').change(function(){
-        var toDoItemId = $(this).data('toDoItemId');
-        var isCompleted = $(this).is(':checked');
+        let toDoItemId = $(this).data('toDoItemId');
+        let isCompleted = $(this).is(':checked');
         if(isCompleted){
             $.ajax({
                 url: '/MarkAsCompleted/' + toDoItemId,
                 type: 'PUT',
-                data: { ownerToDoListId: @ViewBag.OwnerToDoListId }
+                data: { ownerToDoListId: '@ViewBag.OwnerToDoListId' }
             });
         }else{
             $.ajax({
                 url: '/MarkAsNotCompleted/' + toDoItemId,
                 type: 'PUT',
-                data: { ownerToDoListId: @ViewBag.OwnerToDoListId }
+                data: { ownerToDoListId: '@ViewBag.OwnerToDoListId' }
             });
         }
     }

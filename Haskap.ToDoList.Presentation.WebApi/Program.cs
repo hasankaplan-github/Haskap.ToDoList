@@ -103,7 +103,7 @@ app.Use(async (context, next) =>
 
     if (context.Response.StatusCode == StatusCodes.Status401Unauthorized)
     {
-        throw new UnauthorizedAccessException();
+        throw new Haskap.ToDoList.Domain.Core.UserAggregate.Exceptions.UnauthorizedAccessException();
     }
 });
 

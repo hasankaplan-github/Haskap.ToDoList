@@ -75,9 +75,12 @@ public class ToDoListHttpClient
         var httpResponseMessage = await _httpClient.PutAsync($"/ToDoList/{toDoListId}", new StringContent(JsonSerializer.Serialize(toDoListInputDto)));
     }
 
-    public async Task MarkAsCompleted(MarkAsCompleted_ToDoListInputDto toDoListInputDto)
+    public async Task<Envelope> MarkAsCompleted(MarkAsCompleted_ToDoListInputDto toDoListInputDto)
     {
         var httpResponseMessage = await _httpClient.PostAsync("/ToDoList/MarkAsCompleted", new StringContent(JsonSerializer.Serialize(toDoListInputDto), Encoding.UTF8, "application/json"));
+        var envelope = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope>();
+
+        return envelope!;
     }
 
     #endregion
@@ -107,14 +110,20 @@ public class ToDoListHttpClient
         return envelope!;
     }
 
-    public async Task MarkAsCompleted(MarkAsCompleted_ToDoItemInputDto toDoItemInputDto)
+    public async Task<Envelope> MarkAsCompleted(MarkAsCompleted_ToDoItemInputDto toDoItemInputDto)
     {
         var httpResponseMessage = await _httpClient.PostAsync("/ToDoItem/MarkAsCompleted", new StringContent(JsonSerializer.Serialize(toDoItemInputDto), Encoding.UTF8, "application/json"));
+        var envelope = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope>();
+
+        return envelope!;
     }
 
-    public async Task MarkAsNotCompleted(MarkAsNotCompleted_ToDoItemInputDto toDoItemInputDto)
+    public async Task<Envelope> MarkAsNotCompleted(MarkAsNotCompleted_ToDoItemInputDto toDoItemInputDto)
     {
         var httpResponseMessage = await _httpClient.PostAsync("/ToDoItem/MarkAsNotCompleted", new StringContent(JsonSerializer.Serialize(toDoItemInputDto), Encoding.UTF8, "application/json"));
+        var envelope = await httpResponseMessage.Content.ReadFromJsonAsync<Envelope>();
+
+        return envelope!;
     }
 
     #endregion
