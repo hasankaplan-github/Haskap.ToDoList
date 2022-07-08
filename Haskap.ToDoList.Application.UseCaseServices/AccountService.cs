@@ -1,5 +1,4 @@
 ﻿using Haskap.DddBase.Application.UseCaseServices;
-using Haskap.DddBase.Utilities.Guids;
 using Haskap.ToDoList.Application.Contracts;
 using Haskap.ToDoList.Application.Dtos;
 using Haskap.ToDoList.Domain.Core;

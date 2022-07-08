@@ -12,6 +12,7 @@ using Haskap.ToDoList.Presentation.WebApi.Middlewares;
 using Haskap.ToDoList.Infrastructure.Providers;
 using Haskap.ToDoList.Domain.Core;
 using System.Net;
+using Haskap.DddBase.Domain.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 

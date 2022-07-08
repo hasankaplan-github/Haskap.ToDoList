@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using Haskap.DddBase.Domain.Core;
 
 namespace Haskap.ToDoList.Domain.Core.ToDoListAggregate.Exceptions;
 public class YouAreNotOwnerOfThisListException : GeneralException

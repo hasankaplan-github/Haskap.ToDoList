@@ -29,7 +29,7 @@
       <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Application.UseCaseServices.dll</HintPath>
     </Reference>
     <Reference Include="Haskap.DddBase.Domain.Core">
-      <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Domain.Core.dll</HintPath>
+      <HintPath>..\References\Haskap.DddBase.Domain.Core.dll</HintPath>
     </Reference>
     <Reference Include="Haskap.DddBase.Domain.Providers">
       <HintPath>..\References\Haskap.DddBase.Domain.Providers.dll</HintPath>

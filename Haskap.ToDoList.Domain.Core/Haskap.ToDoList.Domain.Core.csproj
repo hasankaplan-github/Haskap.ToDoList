@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <Reference Include="Haskap.DddBase.Domain.Core">
-      <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Domain.Core.dll</HintPath>
+      <HintPath>..\References\Haskap.DddBase.Domain.Core.dll</HintPath>
     </Reference>
     <Reference Include="Haskap.DddBase.Utilities">
       <HintPath>..\..\Haskap.Resume\References\Haskap.DddBase.Utilities.dll</HintPath>
